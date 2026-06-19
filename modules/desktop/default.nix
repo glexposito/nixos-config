@@ -10,8 +10,6 @@
     # apps
     discord
     google-chrome
-    ghostty
-    foot
     mission-center
     resources
 

@@ -30,6 +30,14 @@
     };
   };
 
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      window-padding-x = 10;
+      window-padding-y = 10;
+    };
+  };
+
   programs.starship.enable = true;
 
   dconf.settings."org/gnome/desktop/interface" = {
