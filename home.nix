@@ -55,6 +55,7 @@
       "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
       "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
     ];
   };
 
@@ -74,6 +75,12 @@
     name = "Browser";
     command = "firefox";
     binding = "<Super>b";
+  };
+
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
+    name = "Files";
+    command = "nautilus";
+    binding = "<Super>e";
   };
 
   home.stateVersion = "26.05";
