@@ -11,6 +11,7 @@
       user.email = "glexposito@gmail.com";
       init.defaultBranch = "main";
       pull.rebase = true;
+      credential."https://github.com".helper = "!/run/current-system/sw/bin/gh auth git-credential";
     };
   };
 
