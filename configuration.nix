@@ -42,10 +42,10 @@
   zramSwap.enable = true;
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc.lib
-    zlib
-    openssl
+  programs.nix-ld.libraries = [
+    pkgs.stdenv.cc.cc.lib
+    pkgs.zlib
+    pkgs.openssl
   ];
 
   system.stateVersion = "26.05";

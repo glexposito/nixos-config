@@ -6,16 +6,16 @@
     enable32Bit = true;
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     # apps
-    discord
-    ghostty
-    google-chrome
-    mission-center
-    resources
+    pkgs.discord
+    pkgs.ghostty
+    pkgs.google-chrome
+    pkgs.mission-center
+    pkgs.resources
 
     # diagnostics
-    vulkan-tools
+    pkgs.vulkan-tools
   ];
 
   environment.sessionVariables = {

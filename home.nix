@@ -13,21 +13,25 @@
       user.email = "glexposito@gmail.com";
       init.defaultBranch = "main";
       pull.rebase = true;
-      credential."https://github.com".helper = "!/run/current-system/sw/bin/gh auth git-credential";
+      credential."https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
     };
   };
 
   programs.fish = {
     enable = true;
     shellAliases = {
-      ls = "eza -l --icons";
-      ll = "eza -l --icons";
-      la = "eza -la --icons";
       cat = "bat";
+      nfu = "nix flake update --flake ~/nixos-config";
       nrs-w = "sudo nixos-rebuild switch --flake ~/nixos-config#workstation";
       nrs-l = "sudo nixos-rebuild switch --flake ~/nixos-config#laptop";
       llms = "llama-server --models-preset ~/.config/llama.cpp/models.ini";
     };
+  };
+
+  programs.eza = {
+    enable = true;
+    icons = "auto";
+    enableFishIntegration = true;
   };
 
   programs.ghostty = {

@@ -1,15 +1,15 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    noctalia-shell
-    noctalia-qs
+  environment.systemPackages = [
+    pkgs.noctalia-shell
+    pkgs.noctalia-qs
 
     # Useful helpers for Noctalia / Wayland
-    jq
-    imagemagick
-    cliphist
-    wl-clipboard
+    pkgs.jq
+    pkgs.imagemagick
+    pkgs.cliphist
+    pkgs.wl-clipboard
   ];
 
   # Needed for Noctalia widgets/features

@@ -1,17 +1,17 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     # tools
-    gnome-tweaks
-    dconf-editor
-    nwg-look
+    pkgs.gnome-tweaks
+    pkgs.dconf-editor
+    pkgs.nwg-look
 
     # theming
-    adw-gtk3
-    papirus-icon-theme
-    tela-icon-theme
-    capitaine-cursors
-    bibata-cursors
+    pkgs.adw-gtk3
+    pkgs.papirus-icon-theme
+    pkgs.tela-icon-theme
+    pkgs.capitaine-cursors
+    pkgs.bibata-cursors
   ];
 }

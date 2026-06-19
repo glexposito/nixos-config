@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    openraPackages.engines.release
+  environment.systemPackages = [
+    pkgs.openraPackages.engines.release
   ];
 
   programs.steam = {

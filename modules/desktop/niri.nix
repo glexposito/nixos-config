@@ -3,23 +3,23 @@
 {
   programs.niri.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    xwayland-satellite
-    fuzzel
+  environment.systemPackages = [
+    pkgs.xwayland-satellite
+    pkgs.fuzzel
 
-    wl-clipboard
-    grim
-    slurp
-    brightnessctl
-    playerctl
-    pavucontrol
+    pkgs.wl-clipboard
+    pkgs.grim
+    pkgs.slurp
+    pkgs.brightnessctl
+    pkgs.playerctl
+    pkgs.pavucontrol
   ];
 
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-gtk
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gtk
   ];
 }

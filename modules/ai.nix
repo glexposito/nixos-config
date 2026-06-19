@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    llama-cpp-vulkan
+  environment.systemPackages = [
+    pkgs.llama-cpp-vulkan
   ];
 }
