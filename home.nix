@@ -20,9 +20,9 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ls = "eza";
-      ll = "eza -l";
-      la = "eza -la";
+      ls = "eza -l --icons";
+      ll = "eza -l --icons";
+      la = "eza -la --icons";
       cat = "bat";
       nrs-w = "sudo nixos-rebuild switch --flake ~/nixos-config#workstation";
       nrs-l = "sudo nixos-rebuild switch --flake ~/nixos-config#laptop";
