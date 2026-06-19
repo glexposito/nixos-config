@@ -24,7 +24,7 @@ modules/            Shared modules
   gaming.nix        Steam and gaming
   shell.nix         Shell configuration
 configuration.nix   Shared system settings
-home.nix            Home Manager configuration
+home.nix            User-level Home Manager configuration
 ```
 
 ## Usage
