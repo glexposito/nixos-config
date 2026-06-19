@@ -42,7 +42,7 @@
   programs.starship.enable = true;
 
   dconf.settings."org/gnome/desktop/interface" = {
-    icon-theme = "Tela-grey";
+    icon-theme = "Papirus-Dark";
     color-scheme = "prefer-dark";
   };
 
