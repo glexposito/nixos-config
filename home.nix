@@ -4,6 +4,8 @@
   home.username = "guille";
   home.homeDirectory = "/home/guille";
 
+  home.sessionPath = [ "$HOME/.local/bin" ];
+
   programs.git = {
     enable = true;
     settings = {
