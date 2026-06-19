@@ -8,9 +8,6 @@
   i18n.defaultLocale = "en_NZ.UTF-8";
 
   services.xserver.xkb.layout = "us";
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
   services.printing.enable = true;
 
   services.pulseaudio.enable = false;
