@@ -22,6 +22,8 @@
       ll = "eza -l";
       la = "eza -la";
       cat = "bat";
+      nrs-w = "sudo nixos-rebuild switch --flake ~/nixos-config#workstation";
+      nrs-l = "sudo nixos-rebuild switch --flake ~/nixos-config#laptop";
     };
   };
 
