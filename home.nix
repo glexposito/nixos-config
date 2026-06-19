@@ -46,5 +46,35 @@
     color-scheme = "prefer-dark";
   };
 
+  dconf.settings."org/gnome/desktop/wm/keybindings" = {
+    close = [ "<Super>q" ];
+  };
+
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys" = {
+    custom-keybindings = [
+      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+    ];
+  };
+
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+    name = "Ghostty";
+    command = "ghostty";
+    binding = "<Super>Return";
+  };
+
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+    name = "Zed";
+    command = "zeditor";
+    binding = "<Super>z";
+  };
+
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+    name = "Browser";
+    command = "firefox";
+    binding = "<Super>b";
+  };
+
   home.stateVersion = "26.05";
 }
