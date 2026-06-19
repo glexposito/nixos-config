@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/ai.nix
     ../../modules/boot.nix
     ../../modules/desktop
     ../../modules/desktop/gnome.nix
