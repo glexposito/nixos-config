@@ -14,7 +14,7 @@ hosts/              Per-machine configuration
 modules/            Shared modules
   desktop/          Desktop environment
     default.nix     Core apps and graphics
-    gnome.nix       GNOME theming and tools
+    gnome.nix       GNOME desktop, theming, and tools
     niri.nix        Niri compositor
     noctalia.nix    Noctalia shell
   ai.nix            AI tooling
@@ -40,3 +40,7 @@ Once rebuilt, the following shell aliases are available:
 
 - `nrs-w` — Rebuild and switch to the workstation configuration
 - `nrs-l` — Rebuild and switch to the laptop configuration
+- `nfu` — Update this flake's lock file
+- `llms` — Start llama.cpp server with the configured model preset
+- `cat` — Use `bat`
+- `ls`, `ll`, `la`, `lla`, `lt` — eza-powered listing aliases
