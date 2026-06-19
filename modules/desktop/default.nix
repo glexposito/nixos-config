@@ -9,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     # apps
     discord
+    google-chrome
     ghostty
     foot
     mission-center
