@@ -33,3 +33,10 @@ home.nix            Home Manager configuration
 sudo nixos-rebuild switch --flake .#workstation
 sudo nixos-rebuild switch --flake .#laptop
 ```
+
+### Aliases
+
+Once rebuilt, the following shell aliases are available:
+
+- `nrs-w` — Rebuild and switch to the workstation configuration
+- `nrs-l` — Rebuild and switch to the laptop configuration
