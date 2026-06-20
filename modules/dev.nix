@@ -1,8 +1,14 @@
 { pkgs, ... }:
 
 {
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   environment.systemPackages = [
     pkgs.zed-editor
