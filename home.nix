@@ -45,9 +45,13 @@
 
   programs.starship.enable = true;
 
-  dconf.settings."org/gnome/desktop/interface" = {
-    icon-theme = "Papirus-Dark";
-    color-scheme = "prefer-dark";
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+    colorScheme = "dark";
   };
 
   dconf.settings."org/gnome/desktop/wm/keybindings" = {
