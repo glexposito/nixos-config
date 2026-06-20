@@ -54,6 +54,8 @@ sudo nixos-generate-config --show-hardware-config > hosts/<host>/hardware-config
 
 Do not reuse another machine's generated file unless the disks, filesystems, and hardware are intentionally the same.
 
+Also review `hosts/<host>/default.nix` before reusing a host profile. It may contain hardware-specific defaults that are not in `hardware-configuration.nix`, such as the workstation AMD GPU settings.
+
 ```bash
 sudo nixos-rebuild switch --flake .#workstation
 sudo nixos-rebuild switch --flake .#laptop
