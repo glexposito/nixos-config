@@ -15,8 +15,8 @@ modules/            Shared modules
   desktop/          Desktop environment
     default.nix     Core apps and graphics
     gnome.nix       GNOME desktop, theming, and tools
-    niri.nix        Niri compositor
-    noctalia.nix    Noctalia shell
+    niri.nix        Niri compositor (currently not working; planned refactor)
+    noctalia.nix    Noctalia shell (currently not working; planned refactor)
   ai.nix            AI tooling
   boot.nix          Bootloader
   dev.nix           Development tools
@@ -24,7 +24,10 @@ modules/            Shared modules
   gaming.nix        Steam and gaming
   shell.nix         Shell configuration
 configuration.nix   Shared system settings
+flake.nix           Flake entry point and host definitions
+flake.lock          Locked flake inputs
 home.nix            User-level Home Manager configuration
+README.md           Project notes and usage
 ```
 
 ## Usage
