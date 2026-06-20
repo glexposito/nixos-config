@@ -57,6 +57,10 @@
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
     };
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Original-Ice";
+    };
     colorScheme = "dark";
   };
 
