@@ -1,9 +1,9 @@
 { pkgs, lib, config, ... }:
 
 {
-  options.modules.ai.enable = lib.mkEnableOption "AI tools";
+  options.profiles.ai.enable = lib.mkEnableOption "AI tools";
 
-  config = lib.mkIf config.modules.ai.enable {
+  config = lib.mkIf config.profiles.ai.enable {
     environment.systemPackages = [
       pkgs.llama-cpp-vulkan
     ];

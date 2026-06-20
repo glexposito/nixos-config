@@ -1,9 +1,9 @@
 { pkgs, lib, config, ... }:
 
 {
-  options.modules.gaming.enable = lib.mkEnableOption "gaming support";
+  options.profiles.gaming.enable = lib.mkEnableOption "Gaming support";
 
-  config = lib.mkIf config.modules.gaming.enable {
+  config = lib.mkIf config.profiles.gaming.enable {
     environment.systemPackages = [
       pkgs.openraPackages.engines.release
     ];

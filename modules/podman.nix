@@ -1,9 +1,9 @@
 { pkgs, lib, config, ... }:
 
 {
-  options.modules.podman.enable = lib.mkEnableOption "Podman container support";
+  options.profiles.podman.enable = lib.mkEnableOption "Podman container support";
 
-  config = lib.mkIf config.modules.podman.enable {
+  config = lib.mkIf config.profiles.podman.enable {
     virtualisation = {
       containers.enable = true;
       podman = {

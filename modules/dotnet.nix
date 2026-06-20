@@ -4,9 +4,9 @@ let
   dotnet = pkgs.dotnetCorePackages;
 in
 {
-  options.modules.dotnet.enable = lib.mkEnableOption ".NET SDK and runtimes";
+  options.profiles.dotnet.enable = lib.mkEnableOption ".NET SDK and runtimes";
 
-  config = lib.mkIf config.modules.dotnet.enable {
+  config = lib.mkIf config.profiles.dotnet.enable {
     environment.systemPackages = [
       (dotnet.combinePackages [
         dotnet.sdk_8_0

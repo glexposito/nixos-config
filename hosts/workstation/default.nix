@@ -5,10 +5,12 @@
     ./hardware-configuration.nix
   ];
 
-  modules.ai.enable = true;
-  modules.dotnet.enable = true;
-  modules.gaming.enable = true;
-  modules.podman.enable = true;
+  profiles = {
+    ai.enable = true;
+    dotnet.enable = true;
+    gaming.enable = true;
+    podman.enable = true;
+  };
 
   networking.hostName = "nixos";
 
