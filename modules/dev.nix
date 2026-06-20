@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  virtualisation.podman.enable = true;
+  virtualisation.podman.dockerCompat = true;
+
   environment.systemPackages = [
     pkgs.zed-editor
     pkgs.git
@@ -10,5 +13,6 @@
     pkgs.cargo-nextest
     pkgs.python3
     pkgs.uv
+    pkgs.podman-desktop
   ];
 }
