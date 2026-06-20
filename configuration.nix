@@ -1,6 +1,17 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./modules/ai.nix
+    ./modules/boot.nix
+    ./modules/desktop
+    ./modules/desktop/gnome.nix
+    ./modules/dev.nix
+    ./modules/dotnet.nix
+    ./modules/gaming.nix
+    ./modules/podman.nix
+    ./modules/shell.nix
+  ];
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 

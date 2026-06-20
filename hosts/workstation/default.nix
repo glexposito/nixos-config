@@ -3,16 +3,12 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/ai.nix
-    ../../modules/boot.nix
-    ../../modules/desktop
-    ../../modules/desktop/gnome.nix
-    ../../modules/dev.nix
-    ../../modules/podman.nix
-    ../../modules/dotnet.nix
-    ../../modules/gaming.nix
-    ../../modules/shell.nix
   ];
+
+  modules.ai.enable = true;
+  modules.dotnet.enable = true;
+  modules.gaming.enable = true;
+  modules.podman.enable = true;
 
   networking.hostName = "nixos";
 

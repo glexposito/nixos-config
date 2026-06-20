@@ -1,14 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 {
-  environment.systemPackages = [
-    pkgs.openraPackages.engines.release
-  ];
+  options.modules.gaming.enable = lib.mkEnableOption "gaming support";
 
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
+  config = lib.mkIf config.modules.gaming.enable {
+    environment.systemPackages = [
+      pkgs.openraPackages.engines.release
+    ];
+
+    programs.steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+
+    programs.gamemode.enable = true;
   };
-
-  programs.gamemode.enable = true;
 }

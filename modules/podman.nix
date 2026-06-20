@@ -1,17 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 {
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
+  options.modules.podman.enable = lib.mkEnableOption "Podman container support";
 
-  environment.systemPackages = [
-    pkgs.podman-compose
-    pkgs.podman-desktop
-  ];
+  config = lib.mkIf config.modules.podman.enable {
+    virtualisation = {
+      containers.enable = true;
+      podman = {
+        enable = true;
+        dockerCompat = true;
+        defaultNetwork.settings.dns_enabled = true;
+      };
+    };
+
+    environment.systemPackages = [
+      pkgs.podman-compose
+      pkgs.podman-desktop
+    ];
+  };
 }
