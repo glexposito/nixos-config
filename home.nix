@@ -45,6 +45,13 @@
 
   programs.starship.enable = true;
 
+  programs.gnome-shell = {
+    enable = true;
+    extensions = [
+      { package = pkgs.gnomeExtensions.appindicator; }
+    ];
+  };
+
   gtk = {
     enable = true;
     iconTheme = {
