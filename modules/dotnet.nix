@@ -8,14 +8,12 @@ in
 
   config = lib.mkIf config.profiles.dotnet.enable {
     environment.systemPackages = [
+      pkgs.jetbrains.rider
+
       (dotnet.combinePackages [
         dotnet.sdk_8_0
         dotnet.sdk_10_0
       ])
-      dotnet.runtime_8_0
-      dotnet.runtime_10_0
-      dotnet.aspnetcore_8_0
-      dotnet.aspnetcore_10_0
     ];
   };
 }
