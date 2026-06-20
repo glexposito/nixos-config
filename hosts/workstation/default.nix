@@ -8,6 +8,7 @@
     ../../modules/desktop
     ../../modules/desktop/gnome.nix
     ../../modules/dev.nix
+    ../../modules/podman.nix
     ../../modules/dotnet.nix
     ../../modules/gaming.nix
     ../../modules/shell.nix
