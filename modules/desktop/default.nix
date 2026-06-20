@@ -18,6 +18,9 @@
 
     # diagnostics
     pkgs.vulkan-tools
+
+    # wallpapers
+    pkgs.nixos-artwork.wallpapers.binary-black
   ];
 
   environment.sessionVariables = {
