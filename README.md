@@ -56,6 +56,8 @@ Do not reuse another machine's generated file unless the disks, filesystems, and
 
 Also review `hosts/<host>/default.nix` before reusing a host profile. It may contain hardware-specific defaults that are not in `hardware-configuration.nix`, such as the workstation AMD GPU settings.
 
+For a new machine, it is fine to start with only the shared imports and `networking.hostName`, then add host-specific settings as needed.
+
 ```bash
 sudo nixos-rebuild switch --flake .#workstation
 sudo nixos-rebuild switch --flake .#laptop
