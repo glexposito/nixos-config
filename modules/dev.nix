@@ -13,6 +13,7 @@
     pkgs.cargo-nextest
     pkgs.python3
     pkgs.uv
+    pkgs.podman-compose
     pkgs.podman-desktop
   ];
 }
