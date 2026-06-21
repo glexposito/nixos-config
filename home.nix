@@ -39,6 +39,7 @@
     settings = {
       window-padding-x = 10;
       maximize = true;
+      gtk-single-instance = true;
     };
   };
 
