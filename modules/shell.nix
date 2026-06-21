@@ -5,15 +5,15 @@
 
   users.users.guille.shell = pkgs.fish;
 
-  fonts.packages = [
-    pkgs.nerd-fonts.jetbrains-mono
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
   ];
 
-  environment.systemPackages = [
-    pkgs.fastfetch
-    pkgs.bat
-    pkgs.fd
-    pkgs.ripgrep
-    pkgs.fzf
+  environment.systemPackages = with pkgs; [
+    fastfetch
+    bat
+    fd
+    ripgrep
+    fzf
   ];
 }

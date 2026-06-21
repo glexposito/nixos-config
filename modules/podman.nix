@@ -13,9 +13,9 @@
       };
     };
 
-    environment.systemPackages = [
-      pkgs.podman-compose
-      pkgs.podman-desktop
+    environment.systemPackages = with pkgs; [
+      podman-compose
+      podman-desktop
     ];
   };
 }

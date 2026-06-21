@@ -4,8 +4,8 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
-  environment.systemPackages = [
-    pkgs.gnome-tweaks
-    pkgs.dconf-editor
+  environment.systemPackages = with pkgs; [
+    gnome-tweaks
+    dconf-editor
   ];
 }

@@ -3,31 +3,31 @@
 {
   programs.firefox.enable = true;
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     # desktop
-    pkgs.discord
-    pkgs.google-chrome
-    pkgs.mission-center
-    pkgs.resources
-    pkgs.vulkan-tools
-    pkgs.nixos-artwork.wallpapers.binary-black
+    discord
+    google-chrome
+    mission-center
+    resources
+    vulkan-tools
+    nixos-artwork.wallpapers.binary-black
 
     # theming
-    pkgs.nwg-look
-    pkgs.adw-gtk3
-    pkgs.papirus-icon-theme
-    pkgs.tela-icon-theme
-    pkgs.capitaine-cursors
-    pkgs.bibata-cursors
+    nwg-look
+    adw-gtk3
+    papirus-icon-theme
+    tela-icon-theme
+    capitaine-cursors
+    bibata-cursors
 
     # dev
-    pkgs.zed-editor
-    pkgs.gh
-    pkgs.nodejs_24
-    pkgs.rustup
-    pkgs.cargo-nextest
-    pkgs.gnumake
-    pkgs.python3
-    pkgs.uv
+    zed-editor
+    gh
+    nodejs_24
+    rustup
+    cargo-nextest
+    gnumake
+    python3
+    uv
   ];
 }

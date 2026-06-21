@@ -4,8 +4,8 @@
   options.profiles.gaming.enable = lib.mkEnableOption "Gaming support";
 
   config = lib.mkIf config.profiles.gaming.enable {
-    environment.systemPackages = [
-      pkgs.openraPackages.engines.release
+    environment.systemPackages = with pkgs; [
+      openraPackages.engines.release
     ];
 
     programs.steam = {
