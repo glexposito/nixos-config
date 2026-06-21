@@ -37,7 +37,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "Synthwave";
+      theme = "Monokai Classic";
       background-opacity = 0.95;
       background-opacity-cells = true;
       window-padding-x = 10;
