@@ -6,9 +6,9 @@
     ./modules/boot.nix
     ./modules/desktop
     ./modules/desktop/gnome.nix
-    ./modules/dev.nix
     ./modules/dotnet.nix
     ./modules/gaming.nix
+    ./modules/packages.nix
     ./modules/podman.nix
     ./modules/services.nix
     ./modules/shell.nix
