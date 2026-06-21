@@ -81,6 +81,7 @@
     enable = true;
     extensions = [
       { package = pkgs.gnomeExtensions.appindicator; }
+      { package = pkgs.gnomeExtensions.logo-menu; }
     ];
   };
 
@@ -95,6 +96,10 @@
       name = "Bibata-Original-Ice";
     };
     colorScheme = "dark";
+  };
+
+  dconf.settings."org/gnome/shell/extensions/Logo-menu" = {
+    menu-button-icon-image = 23;
   };
 
   dconf.settings."org/gnome/desktop/wm/keybindings" = {
