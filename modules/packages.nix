@@ -12,6 +12,14 @@
     pkgs.vulkan-tools
     pkgs.nixos-artwork.wallpapers.binary-black
 
+    # theming
+    pkgs.nwg-look
+    pkgs.adw-gtk3
+    pkgs.papirus-icon-theme
+    pkgs.tela-icon-theme
+    pkgs.capitaine-cursors
+    pkgs.bibata-cursors
+
     # dev
     pkgs.zed-editor
     pkgs.gh
