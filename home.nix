@@ -50,9 +50,9 @@
     enable = true;
     settings = {
       main = {
-        include = "${pkgs.foot.src}/themes/catppuccin-mocha";
+        include = "${pkgs.foot.src}/themes/monokai-pro";
         term = "xterm-256color";
-        font = "JetBrainsMono Nerd Font:pixelsize=14";
+        font = "JetBrainsMono Nerd Font:pixelsize=15";
         pad = "10x0";
         dpi-aware = "yes";
         initial-window-mode = "maximized";
