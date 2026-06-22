@@ -5,5 +5,5 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "nixos";
+  networking.hostName = "apollo";
 }

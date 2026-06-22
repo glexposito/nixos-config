@@ -12,7 +12,7 @@
     podman.enable = true;
   };
 
-  networking.hostName = "nixos";
+  networking.hostName = "mother";
 
   hardware.amdgpu.initrd.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
