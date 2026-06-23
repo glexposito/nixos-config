@@ -22,10 +22,8 @@
     # theming
     nwg-look
     adw-gtk3
-    papirus-icon-theme
     tela-icon-theme
     capitaine-cursors
-    bibata-cursors
     nixos-artwork.wallpapers.binary-black
 
     # dev
