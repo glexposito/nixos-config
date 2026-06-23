@@ -30,7 +30,6 @@
 
     # dev
     zed-editor
-    gh
     nodejs_24
     rustup
     cargo-nextest
@@ -40,9 +39,5 @@
 
     # cli tools
     fastfetch
-    bat
-    fd
-    ripgrep
-    fzf
   ];
 }
