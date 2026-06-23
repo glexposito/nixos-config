@@ -103,12 +103,24 @@
     theme = {
       flavor = { use = "monokai-vibrant"; };
     };
+    settings = {
+      opener = {
+        edit = [{ run = ''micro "$@"''; block = true; }];
+      };
+    };
   };
 
   programs.superfile = {
     enable = true;
     settings = {
       theme = "monokai";
+    };
+  };
+
+  programs.micro = {
+    enable = true;
+    settings = {
+      colorscheme = "monokai-dark";
     };
   };
 
@@ -151,6 +163,7 @@
       "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
       "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
+      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
     ];
   };
 
@@ -176,6 +189,12 @@
     name = "Files";
     command = "nautilus";
     binding = "<Super>e";
+  };
+
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
+    name = "Yazi";
+    command = "kitty --start-as maximized --override font_size=18 -- yazi";
+    binding = "<Super>y";
   };
 
   home.stateVersion = "26.05";
