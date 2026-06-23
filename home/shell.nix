@@ -21,7 +21,6 @@
     shellAliases = {
       cat = "bat";
       nfu = "nix flake update --flake ~/nixos-config";
-
       nrs-w = "sudo nixos-rebuild switch --flake ~/nixos-config#workstation";
       nrs-l = "sudo nixos-rebuild switch --flake ~/nixos-config#laptop";
       llms = "llama-server --models-preset ~/.config/llama.cpp/models.ini";
