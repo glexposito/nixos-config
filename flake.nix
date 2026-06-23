@@ -15,7 +15,7 @@
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bak";
-      home-manager.users.guille = import ./home.nix;
+      home-manager.users.guille = import ./home;
     };
   in {
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
