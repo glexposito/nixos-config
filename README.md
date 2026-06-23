@@ -11,11 +11,11 @@ NixOS configuration for my machines.
 
 - `flake.nix` defines the flake inputs and host outputs.
 - `configuration.nix` contains shared NixOS settings imported by every host.
-- `home.nix` contains user-level Home Manager configuration.
+- `home/` contains user-level Home Manager configuration.
 - `hosts/` contains per-machine configuration, including generated hardware files.
 - `modules/` contains reusable system profiles and feature modules that hosts can opt into.
 
-Host files should stay small and mostly describe machine-specific choices. Shared behavior belongs in `configuration.nix`, `home.nix`, or a module under `modules/`.
+Host files should stay small and mostly describe machine-specific choices. Shared behavior belongs in `configuration.nix`, `home/`, or a module under `modules/`.
 
 ## Usage
 
