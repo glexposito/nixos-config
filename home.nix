@@ -127,6 +127,7 @@
     enable = true;
     settings = {
       colorscheme = "monokai-dark";
+      diffgutter = true;
     };
   };
 
