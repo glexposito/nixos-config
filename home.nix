@@ -75,6 +75,20 @@
     };
   };
 
+  programs.kitty = {
+    enable = true;
+    themeFile = "Monokai_Classic";
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 12;
+    };
+    settings = {
+      background_opacity = "0.95";
+      window_padding_width = 10;
+      hide_window_decorations = true;
+    };
+  };
+
   programs.starship.enable = true;
 
   programs.gnome-shell = {
@@ -116,8 +130,8 @@
   };
 
   dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-    name = "Ghostty";
-    command = "ghostty";
+    name = "Kitty";
+    command = "kitty";
     binding = "<Super>Return";
   };
 
