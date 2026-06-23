@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  # Bootloader.
   boot.loader.systemd-boot.enable = false;
   boot.loader.grub.enable = false;
 
@@ -13,6 +12,5 @@
     maxGenerations = 10;
   };
 
-  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 }
