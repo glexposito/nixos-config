@@ -19,6 +19,24 @@
 
   programs.fish = {
     enable = true;
+    interactiveShellInit = ''
+      function fish_greeting
+        set_color --dim green
+        echo "    MU-TH-UR 6000"
+        echo ""
+        set_color --bold green
+        echo "    SPECIAL ORDER 937"
+        echo ""
+        set_color green
+        echo "    PRIORITY ONE"
+        echo "    INSURE RETURN OF ORGANISM"
+        echo "    FOR ANALYSIS."
+        echo "    ALL OTHER CONSIDERATIONS SECONDARY."
+        echo "    CREW EXPENDABLE."
+        echo ""
+        set_color normal
+      end
+    '';
     shellAliases = {
       cat = "bat";
       nfu = "nix flake update --flake ~/nixos-config";
