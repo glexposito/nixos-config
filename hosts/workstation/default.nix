@@ -9,6 +9,7 @@
     ai.enable = true;
     dotnet.enable = true;
     gaming.enable = true;
+    gnome.enable = true;
     podman.enable = true;
   };
 

@@ -5,7 +5,6 @@
     ./modules/ai.nix
     ./modules/boot.nix
     ./modules/desktop
-    ./modules/desktop/gnome.nix
     ./modules/dotnet.nix
     ./modules/gaming.nix
     ./modules/packages.nix

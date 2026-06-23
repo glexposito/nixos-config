@@ -1,6 +1,10 @@
 { ... }:
 
 {
+  imports = [
+    ./gnome.nix
+  ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
