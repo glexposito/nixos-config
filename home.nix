@@ -21,9 +21,6 @@
     enable = true;
     interactiveShellInit = ''
       function fish_greeting
-        set_color --dim green
-        echo "    MU-TH-UR 6000"
-        echo ""
         set_color --bold green
         echo "    SPECIAL ORDER 937"
         echo ""
