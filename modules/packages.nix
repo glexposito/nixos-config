@@ -2,6 +2,13 @@
 
 {
   programs.firefox.enable = true;
+  programs.fish.enable = true;
+
+  users.users.guille.shell = pkgs.fish;
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   environment.systemPackages = with pkgs; [
     # desktop
@@ -10,7 +17,6 @@
     mission-center
     resources
     vulkan-tools
-    nixos-artwork.wallpapers.binary-black
 
     # theming
     nwg-look
@@ -19,6 +25,7 @@
     tela-icon-theme
     capitaine-cursors
     bibata-cursors
+    nixos-artwork.wallpapers.binary-black
 
     # dev
     zed-editor
@@ -29,5 +36,12 @@
     gnumake
     python3
     uv
+
+    # cli tools
+    fastfetch
+    bat
+    fd
+    ripgrep
+    fzf
   ];
 }

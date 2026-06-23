@@ -11,7 +11,6 @@
     ./modules/packages.nix
     ./modules/podman.nix
     ./modules/services.nix
-    ./modules/shell.nix
   ];
 
   networking.networkmanager.enable = true;
