@@ -89,6 +89,29 @@
     };
   };
 
+  programs.yazi = {
+    enable = true;
+    enableFishIntegration = true;
+    flavors = {
+      monokai-vibrant = pkgs.fetchFromGitHub {
+        owner = "sanjinso";
+        repo = "monokai-vibrant.yazi";
+        rev = "8b68223a8eaf014a8aac842852cc07461f07df58";
+        hash = "sha256-f3IaeDJ4gZf5glk4RIVQ1/DqH0ON2Sv5UzGvdAnLEbw=";
+      };
+    };
+    theme = {
+      flavor = { use = "monokai-vibrant"; };
+    };
+  };
+
+  programs.superfile = {
+    enable = true;
+    settings = {
+      theme = "monokai";
+    };
+  };
+
   programs.starship.enable = true;
 
   programs.gnome-shell = {
@@ -115,6 +138,8 @@
   dconf.settings."org/gnome/shell/extensions/Logo-menu" = {
     menu-button-icon-image = 23;
   };
+
+  xdg.configFile."xdg-terminals.list".text = "kitty.desktop\n";
 
   dconf.settings."org/gnome/desktop/wm/keybindings" = {
     close = [ "<Super>q" ];

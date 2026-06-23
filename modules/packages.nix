@@ -17,6 +17,7 @@
     mission-center
     resources
     vulkan-tools
+    xdg-terminal-exec
 
     # theming
     nwg-look
