@@ -18,6 +18,7 @@
     resources
     vulkan-tools
     xdg-terminal-exec
+    (appimage-run.override { extraPkgs = p: [ p.icu ]; })
 
     # theming
     nwg-look
