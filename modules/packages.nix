@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 {
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+    package = pkgs.appimage-run.override { extraPkgs = p: [ p.icu ]; };
+  };
+
   programs.firefox.enable = true;
   programs.fish.enable = true;
 
@@ -18,7 +24,6 @@
     resources
     vulkan-tools
     xdg-terminal-exec
-    (appimage-run.override { extraPkgs = p: [ p.icu ]; })
 
     # theming
     nwg-look
