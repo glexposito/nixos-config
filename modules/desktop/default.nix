@@ -3,6 +3,7 @@
 {
   imports = [
     ./gnome.nix
+    ./niri.nix
   ];
 
   hardware.graphics = {

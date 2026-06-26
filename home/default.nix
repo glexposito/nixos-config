@@ -7,6 +7,7 @@
     ./terminals.nix
     ./editors.nix
     ./gnome.nix
+    ./niri.nix
   ];
 
   home.username = "guille";

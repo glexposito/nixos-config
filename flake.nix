@@ -7,9 +7,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, dms, niri, ... }:
   let
     homeManagerModule = {
       home-manager.useGlobalPkgs = true;
@@ -35,6 +44,8 @@
         ./configuration.nix
         home-manager.nixosModules.home-manager
         homeManagerModule
+        dms.nixosModules.default
+        niri.nixosModules.niri
       ];
     };
   };
