@@ -14,6 +14,7 @@
 
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   time.timeZone = "Pacific/Auckland";
   i18n.defaultLocale = "en_NZ.UTF-8";
