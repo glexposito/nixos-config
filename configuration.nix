@@ -7,14 +7,11 @@
     ./modules/desktop
     ./modules/dotnet.nix
     ./modules/gaming.nix
+    ./modules/networking.nix
     ./modules/packages.nix
     ./modules/podman.nix
     ./modules/services.nix
   ];
-
-  networking.networkmanager.enable = true;
-  networking.firewall.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
 
   time.timeZone = "Pacific/Auckland";
   i18n.defaultLocale = "en_NZ.UTF-8";
