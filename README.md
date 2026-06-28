@@ -5,7 +5,7 @@ NixOS configuration for my machines.
 ## Hosts
 
 - **workstation** — Desktop with AMD GPU, gaming, and .NET development
-- **laptop** — Portable setup
+- **zenbook** — ASUS Zenbook portable setup
 
 ## Structure
 
@@ -28,7 +28,7 @@ cd nixos-config
 
 ### Hardware configuration
 
-The `hosts/*/hardware-configuration.nix` files are machine-specific. Each one should contain the actual generated hardware config for that host. Before rebuilding, put the target machine's generated hardware config in the matching host folder. Run these commands from the repo root, replacing `<host>` with `workstation` or `laptop`.
+The `hosts/*/hardware-configuration.nix` files are machine-specific. Each one should contain the actual generated hardware config for that host. Before rebuilding, put the target machine's generated hardware config in the matching host folder. Run these commands from the repo root, replacing `<host>` with `workstation` or `zenbook`.
 
 If the machine already has a generated hardware config, copy it first:
 
@@ -50,7 +50,7 @@ For a new machine, it is fine to start with only the shared imports and `network
 
 ```bash
 sudo nixos-rebuild switch --flake .#workstation
-sudo nixos-rebuild switch --flake .#laptop
+sudo nixos-rebuild switch --flake .#zenbook
 ```
 
 ### Aliases
@@ -58,7 +58,7 @@ sudo nixos-rebuild switch --flake .#laptop
 Once rebuilt, the following shell aliases are available:
 
 - `nrs-w` — Rebuild and switch to the workstation configuration
-- `nrs-l` — Rebuild and switch to the laptop configuration
+- `nrs-z` — Rebuild and switch to the zenbook configuration
 - `nfu` — Update this flake's lock file
 - `llms` — Start llama.cpp server with the configured model preset
 - `cat` — Use `bat`

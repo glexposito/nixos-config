@@ -18,10 +18,10 @@
       home-manager.users.guille = import ./home;
     };
   in {
-    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.zenbook = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./hosts/laptop
+        ./hosts/zenbook
         ./configuration.nix
         home-manager.nixosModules.home-manager
         homeManagerModule
