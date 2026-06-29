@@ -10,19 +10,6 @@
       ];
     };
 
-    gtk = {
-      enable = true;
-      iconTheme = {
-        package = pkgs.papirus-icon-theme;
-        name = "Papirus-Dark";
-      };
-      cursorTheme = {
-        package = pkgs.bibata-cursors;
-        name = "Bibata-Original-Ice";
-      };
-      colorScheme = "dark";
-    };
-
     dconf.settings."org/gnome/shell/extensions/Logo-menu" = {
       menu-button-icon-image = 23;
     };

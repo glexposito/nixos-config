@@ -13,10 +13,18 @@
   home.username = "guille";
   home.homeDirectory = "/home/guille";
 
-  home.packages = with pkgs; [
-    papirus-icon-theme
-    bibata-cursors
-  ];
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Original-Ice";
+    };
+    colorScheme = "dark";
+  };
 
   home.sessionPath = [ "$HOME/.local/bin" ];
 
