@@ -1,5 +1,4 @@
-{ inputs, lib, osConfig ? {}, ... }:
-
+{ inputs, pkgs, lib, osConfig ? {}, ... }:
 {
   imports = [
     inputs.caelestia-shell.homeManagerModules.default
@@ -14,6 +13,9 @@
     xdg.configFile."caelestia/hypr-user.lua".text = builtins.readFile ../dots/caelestia/hypr-user.lua;
 
     xdg.configFile."caelestia/hypr-vars.lua".text = builtins.readFile ../dots/caelestia/hypr-vars.lua;
+
+    home.file.".local/share/wallpapers/nix-binary-black.png".source =
+      "${pkgs.nixos-artwork.wallpapers.binary-black}/share/backgrounds/nixos/nix-wallpaper-binary-black.png";
 
     programs.caelestia = {
       enable = true;
