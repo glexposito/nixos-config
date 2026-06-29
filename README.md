@@ -4,8 +4,8 @@ NixOS configuration for my machines.
 
 ## Hosts
 
-- **workstation** — Desktop with AMD GPU, gaming, and .NET development
-- **zenbook** — ASUS Zenbook portable setup
+- **workstation** — Desktop with AMD GPU, gaming, .NET development, GNOME + Hyprland
+- **zenbook** — ASUS Zenbook portable setup, GNOME
 
 ## Structure
 
@@ -14,6 +14,7 @@ NixOS configuration for my machines.
 - `home/` contains user-level Home Manager configuration.
 - `hosts/` contains per-machine configuration, including generated hardware files.
 - `modules/` contains reusable system profiles and feature modules that hosts can opt into.
+- `dots/` contains dotfiles managed by Home Manager (e.g. Caelestia/Hyprland overrides).
 
 Host files should stay small and mostly describe machine-specific choices. Shared behavior belongs in `configuration.nix`, `home/`, or a module under `modules/`.
 
@@ -52,6 +53,15 @@ For a new machine, it is fine to start with only the shared imports and `network
 sudo nixos-rebuild switch --flake .#workstation
 sudo nixos-rebuild switch --flake .#zenbook
 ```
+
+### Desktop profiles
+
+Desktop environments are opt-in per host via `profiles.<name>.enable`:
+
+- **GNOME** — `profiles.gnome.enable = true`
+- **Hyprland** — `profiles.hyprland.enable = true` (uses [Caelestia Shell](https://github.com/caelestia-dots/shell) v2.1.0 with Lua config from [caelestia-dots](https://github.com/caelestia-dots/caelestia))
+
+Hyprland user overrides live in `dots/caelestia/` and are deployed to `~/.config/caelestia/` via Home Manager. The upstream Hyprland Lua config comes from the `caelestia-dots` flake input and is symlinked to `~/.config/hypr/`.
 
 ### Aliases
 
