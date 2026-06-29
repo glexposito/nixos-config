@@ -11,6 +11,10 @@
       recursive = true;
     };
 
+    xdg.configFile."caelestia/hypr-user.lua".text = builtins.readFile ../dots/caelestia/hypr-user.lua;
+
+    xdg.configFile."caelestia/hypr-vars.lua".text = builtins.readFile ../dots/caelestia/hypr-vars.lua;
+
     programs.caelestia = {
       enable = true;
       systemd.enable = true;
