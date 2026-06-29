@@ -7,15 +7,24 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    caelestia-dots = {
+      url = "github:caelestia-dots/caelestia";
+      flake = false;
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
   let
     homeManagerModule = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bak";
       home-manager.users.guille = import ./home;
+      home-manager.extraSpecialArgs = { inherit inputs; };
     };
   in {
     nixosConfigurations.zenbook = nixpkgs.lib.nixosSystem {

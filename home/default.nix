@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -7,6 +7,7 @@
     ./terminals.nix
     ./editors.nix
     ./gnome.nix
+    ./hyprland.nix
   ];
 
   home.username = "guille";
