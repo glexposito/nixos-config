@@ -3,6 +3,7 @@
 {
   imports = [
     ./gnome.nix
+    ./hyprland.nix
   ];
 
   hardware.graphics = {
@@ -14,5 +15,4 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  programs.hyprland.enable = true;
 }

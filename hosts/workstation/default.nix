@@ -10,6 +10,7 @@
     dotnet.enable = true;
     gaming.enable = true;
     gnome.enable = true;
+    hyprland.enable = true;
     podman.enable = true;
   };
 
