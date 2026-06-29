@@ -5,7 +5,7 @@ NixOS configuration for my machines.
 ## Hosts
 
 - **workstation** — Desktop with AMD GPU, gaming, .NET development, GNOME + Hyprland
-- **zenbook** — ASUS Zenbook portable setup, GNOME
+- **zenbook** — ASUS Zenbook portable setup, GNOME + Hyprland
 
 ## Structure
 
