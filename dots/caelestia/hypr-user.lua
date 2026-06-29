@@ -4,6 +4,8 @@ hl.monitor({
     scale    = 1,
 })
 
+hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
+
 local vars = require("variables")
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(vars.terminal))
 
