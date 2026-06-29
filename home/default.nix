@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -12,6 +12,11 @@
 
   home.username = "guille";
   home.homeDirectory = "/home/guille";
+
+  home.packages = with pkgs; [
+    papirus-icon-theme
+    bibata-cursors
+  ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
 
