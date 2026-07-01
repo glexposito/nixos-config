@@ -43,5 +43,7 @@
 
     # cli tools
     fastfetch
+    lm_sensors
+    s-tui
   ];
 }
