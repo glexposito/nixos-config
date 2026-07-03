@@ -6,6 +6,7 @@
   config = lib.mkIf config.profiles.gaming.enable {
     environment.systemPackages = with pkgs; [
       openraPackages.engines.release
+      beyond-all-reason
     ];
 
     programs.steam = {
