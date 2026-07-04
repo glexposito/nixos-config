@@ -9,6 +9,13 @@
 
   programs.firefox.enable = true;
   programs.fish.enable = true;
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "kitty.desktop" ];
+      GNOME = [ "kitty.desktop" ];
+    };
+  };
 
   users.users.guille.shell = pkgs.fish;
 
@@ -23,7 +30,6 @@
     mission-center
     resources
     vulkan-tools
-    xdg-terminal-exec
 
     # theming
     nwg-look
