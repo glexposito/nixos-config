@@ -3,6 +3,7 @@
 {
   services.xserver.xkb.layout = "us";
   services.printing.enable = true;
+  services.fstrim.enable = true;
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
