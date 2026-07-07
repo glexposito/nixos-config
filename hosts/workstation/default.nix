@@ -16,6 +16,8 @@
 
   networking.hostName = "mother";
 
+  boot.kernel.sysctl."vm.swappiness" = 60;
+
   hardware.amdgpu.initrd.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 }
