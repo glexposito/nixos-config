@@ -11,7 +11,6 @@
         echo "    FOR ANALYSIS."
         echo "    ALL OTHER CONSIDERATIONS SECONDARY."
         echo "    CREW EXPENDABLE."
-        echo ""
         set_color normal
       end
     '';
