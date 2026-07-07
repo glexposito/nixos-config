@@ -5,9 +5,6 @@
     enable = true;
     interactiveShellInit = ''
       function fish_greeting
-        set_color --bold green
-        echo "    SPECIAL ORDER 937"
-        echo ""
         set_color green
         echo "    PRIORITY ONE"
         echo "    INSURE RETURN OF ORGANISM"
