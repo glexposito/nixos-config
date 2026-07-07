@@ -27,6 +27,19 @@ git clone https://github.com/glexposito/nixos-config.git
 cd nixos-config
 ```
 
+### Username
+
+This config hardcodes the username `guille` in a few places. If you're forking this for your own machine, replace it with your own username everywhere it appears:
+
+- `configuration.nix` — `users.users.guille`
+- `modules/packages.nix` — `users.users.guille.shell`
+- `home/default.nix` — `home.username` and `home.homeDirectory`
+- `flake.nix` — `home-manager.users.guille`
+
+```bash
+grep -rl "guille" --include="*.nix" . | xargs sed -i 's/guille/<your-username>/g'
+```
+
 ### Hardware configuration
 
 The `hosts/*/hardware-configuration.nix` files are machine-specific. Each one should contain the actual generated hardware config for that host. Before rebuilding, put the target machine's generated hardware config in the matching host folder. Run these commands from the repo root, replacing `<host>` with `workstation` or `zenbook`.
