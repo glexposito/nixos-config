@@ -84,5 +84,6 @@ Once rebuilt, the following shell aliases are available:
 - `nrs-z` — Rebuild and switch to the zenbook configuration
 - `nfu` — Update this flake's lock file
 - `llms` — Start llama.cpp server with the configured model preset
+- `ff` — Run fastfetch with the example 32 preset
 - `cat` — Use `bat`
 - `ls`, `ll`, `la`, `lla`, `lt` — eza-powered listing aliases
