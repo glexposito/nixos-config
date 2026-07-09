@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.fish = {
@@ -20,6 +20,7 @@
       nrs-w = "sudo nixos-rebuild switch --flake ~/nixos-config#workstation";
       nrs-z = "sudo nixos-rebuild switch --flake ~/nixos-config#zenbook";
       llms = "llama-server --models-preset ~/.config/llama.cpp/models.ini";
+      ff = "fastfetch -c ${pkgs.fastfetch}/share/fastfetch/presets/examples/29.jsonc";
     };
   };
 
