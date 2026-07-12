@@ -7,7 +7,8 @@
 
   services.scx = {
     enable = true;
-    scheduler = "scx_bpfland";
+    scheduler = "scx_lavd";
+    extraArgs = [ "--no-use-em" ];
   };
 
   services.pulseaudio.enable = false;
