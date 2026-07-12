@@ -18,12 +18,6 @@
 
   boot.kernel.sysctl."vm.swappiness" = 60;
 
-  # bias latency-sensitive tasks toward P-cores; no battery to protect here
-  services.scx.extraArgs = [
-    "-m" "performance"
-    "-P"
-  ];
-
   hardware.amdgpu.initrd.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 }
