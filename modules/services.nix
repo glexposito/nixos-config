@@ -8,6 +8,10 @@
   services.scx = {
     enable = true;
     scheduler = "scx_bpfland";
+    extraArgs = [
+      "-m" "performance"
+      "-P"
+    ];
   };
 
   services.pulseaudio.enable = false;
