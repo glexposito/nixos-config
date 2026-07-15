@@ -29,16 +29,20 @@ cd nixos-config
 
 ### Username
 
-This config hardcodes the username `guille` in a few places. If you're forking this for your own machine, replace it with your own username everywhere it appears:
+The username is defined once, as `username` in the `let` block of `flake.nix`, and threaded through to every module that needs it (`configuration.nix`, `modules/packages.nix`, `home/default.nix`) via `specialArgs`/`extraSpecialArgs`. If you're forking this for your own machine, change that one line:
 
-- `configuration.nix` — `users.users.guille`
-- `modules/packages.nix` — `users.users.guille.shell`
-- `home/default.nix` — `home.username` and `home.homeDirectory`
-- `flake.nix` — `home-manager.users.guille`
-
-```bash
-grep -rl "guille" --include="*.nix" . | xargs sed -i 's/guille/<your-username>/g'
+```nix
+# flake.nix
+username = "guille";
 ```
+
+### Other personal details
+
+A few more personal values aren't parameterized, since they're single-use leaf values rather than something referenced across files. Update these directly if forking:
+
+- `configuration.nix` — `description = "Guillermo"` (GECOS display name)
+- `home/git.nix` — `user.name` and `user.email`
+- `configuration.nix` — `time.timeZone` and `i18n.defaultLocale`
 
 ### Hardware configuration
 
