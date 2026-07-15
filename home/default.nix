@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, username, ... }:
 
 {
   imports = [
@@ -10,8 +10,8 @@
     ./hyprland.nix
   ];
 
-  home.username = "guille";
-  home.homeDirectory = "/home/guille";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   gtk = {
     enable = true;

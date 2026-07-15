@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   programs.appimage = {
@@ -17,7 +17,7 @@
     };
   };
 
-  users.users.guille.shell = pkgs.fish;
+  users.users.${username}.shell = pkgs.fish;
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

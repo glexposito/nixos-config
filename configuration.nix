@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   imports = [
@@ -16,7 +16,7 @@
   time.timeZone = "Pacific/Auckland";
   i18n.defaultLocale = "en_NZ.UTF-8";
 
-  users.users.guille = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Guillermo";
     extraGroups = [ "networkmanager" "wheel" ];
