@@ -7,7 +7,10 @@
       "models": [
         { "id": "gemma4-12b", "contextWindow": 65536 },
         { "id": "qwen3.6-27b", "contextWindow": 16384 },
-        { "id": "ornith-9b", "contextWindow": 65536 }
+        { "id": "ornith-9b", "contextWindow": 65536 },
+        { "id": "ornith-35b-moe", "contextWindow": 65536 },
+        { "id": "qwen3.6-35b-a3b", "contextWindow": 65536 },
+        { "id": "bonsai-27b", "contextWindow": 131072 }
       ]
     }
   }
