@@ -15,6 +15,10 @@
       url = "github:caelestia-dots/caelestia";
       flake = false;
     };
+    # Not following nixpkgs here: noctalia's cachix binary cache is built
+    # against its own pinned nixpkgs, so following ours forces a from-source
+    # rebuild of noctalia (meson/C++, sdbus-cpp, curl, libqalculate, ...).
+    noctalia-shell.url = "github:noctalia-dev/noctalia";
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -35,6 +39,7 @@
       modules = [
         ./hosts/zenbook
         ./configuration.nix
+        inputs.noctalia-shell.nixosModules.default
         home-manager.nixosModules.home-manager
         homeManagerModule
       ];
@@ -46,6 +51,7 @@
       modules = [
         ./hosts/workstation
         ./configuration.nix
+        inputs.noctalia-shell.nixosModules.default
         home-manager.nixosModules.home-manager
         homeManagerModule
       ];

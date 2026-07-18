@@ -4,6 +4,7 @@
   imports = [
     ./gnome.nix
     ./hyprland.nix
+    ./mangowc.nix
   ];
 
   hardware.graphics = {

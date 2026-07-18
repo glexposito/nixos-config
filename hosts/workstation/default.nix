@@ -11,6 +11,7 @@
     gaming.enable = true;
     gnome.enable = true;
     hyprland.enable = true;
+    mangowc.enable = true;
     podman.enable = true;
   };
 

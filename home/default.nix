@@ -8,6 +8,7 @@
     ./editors.nix
     ./gnome.nix
     ./hyprland.nix
+    ./mangowc.nix
   ];
 
   home.username = username;
