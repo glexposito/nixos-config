@@ -15,6 +15,7 @@ NixOS configuration for my machines.
 - `hosts/` contains per-machine configuration, including generated hardware files.
 - `modules/` contains reusable system profiles and feature modules that hosts can opt into.
 - `dots/` contains dotfiles managed by Home Manager (e.g. Caelestia/Hyprland overrides).
+- `utils/` contains personal scripts and reference configs for things not covered by the declarative system configuration (e.g. llama.cpp model presets).
 
 Host files should stay small and mostly describe machine-specific choices. Shared behavior belongs in `configuration.nix`, `home/`, or a module under `modules/`.
 
