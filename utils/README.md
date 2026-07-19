@@ -28,19 +28,15 @@ This script sets `LD_LIBRARY_PATH` to point at all of these in the Nix store.
 ./utils/launch-openra.sh d2k
 ```
 
-## Configs
+## LLMs Config
 
-### llama.cpp/models.ini
+### llms/llama.cpp/models.ini
 
-Reference configuration for [llama-server](https://github.com/ggerganov/llama.cpp) with local GGUF models. Defines model paths, Vulkan GPU offloading, context sizes, and sampling parameters.
-
-Current models:
-- **gemma4-12b** — Gemma 4 12B (Q4_K_XL quantization, 64K context)
-- **qwen3.6-27b** — Qwen 3.6 27B (IQ4_XS quantization, 16K context)
+Reference configuration for [llama-server](https://github.com/ggerganov/llama.cpp) with local GGUF models. Defines model paths, Vulkan GPU offloading, context sizes, and sampling parameters. See [llms/README.md](llms/README.md) for a param-by-param explanation.
 
 Copy to `~/.config/llama.cpp/models.ini` to use.
 
-### pi/models.json
+### llms/pi/models.json
 
 Configuration to make local llama-server models visible in [Pi](https://pi.dev/) agentic code. Points Pi at the local llama-server OpenAI-compatible endpoint (`http://localhost:8080/v1`) and registers the available models with their context windows.
 
