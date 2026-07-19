@@ -76,7 +76,7 @@ sudo nixos-rebuild switch --flake .#zenbook
 Desktop environments are opt-in per host via `profiles.<name>.enable`:
 
 - **GNOME** — `profiles.gnome.enable = true`
-- **Hyprland** — `profiles.hyprland.enable = true` (uses [Caelestia Shell](https://github.com/caelestia-dots/shell) v2.1.0 with Lua config from [caelestia-dots](https://github.com/caelestia-dots/caelestia))
+- **Hyprland** — `profiles.hyprland.enable = true` (uses [Caelestia Shell](https://github.com/caelestia-dots/shell) with Lua config from [caelestia-dots](https://github.com/caelestia-dots/caelestia))
 
 Hyprland user overrides live in `dots/caelestia/` and are deployed to `~/.config/caelestia/` via Home Manager. The upstream Hyprland Lua config comes from the `caelestia-dots` flake input and is symlinked to `~/.config/hypr/`.
 
