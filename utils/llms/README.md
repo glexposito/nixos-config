@@ -2,6 +2,19 @@
 
 Configs for running local GGUF models with [llama.cpp](https://github.com/ggerganov/llama.cpp)'s `llama-server`, and for exposing them to [Pi](https://pi.dev/) as agent models.
 
+## Downloading models
+
+`llama-server` can pull a model straight from Hugging Face with `-hf`, instead of requiring a manually downloaded path:
+
+```bash
+llama-server -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL
+```
+
+- `unsloth/gemma-4-26B-A4B-it-qat-GGUF` is the HF repo.
+- `:UD-Q4_K_XL` selects the quantization variant (the file matching that tag inside the repo). Omit it to get prompted, or to fall back to the repo's default quant.
+
+This downloads into the standard Hugging Face cache (`~/.cache/huggingface/hub/models--<org>--<repo>/snapshots/<hash>/<file>.gguf`) — the same layout every `model =` path in `models.ini` already points at. So the usual flow for adding a new model is: run `llama-server -hf ...` once (or just to try the model interactively), then find the downloaded `.gguf` under that cache path and add a `[section]` to `models.ini` pointing `model =` at it, so it can be launched by name via the preset file afterwards.
+
 ## llama.cpp/models.ini
 
 A "models preset" file: each `[section]` is a model llama-server can serve, selected at launch with `--models-preset ~/.config/llama.cpp/models.ini --model-preset <name>` (or auto-loaded on first request — see `models-autoload` below). Copy to `~/.config/llama.cpp/models.ini` to use; the `llms` shell alias (`home/shell.nix`) points `llama-server` at this path.
