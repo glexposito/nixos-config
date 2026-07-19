@@ -13,23 +13,17 @@ llama-server -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL
 - `unsloth/gemma-4-26B-A4B-it-qat-GGUF` is the HF repo.
 - `:UD-Q4_K_XL` selects the quantization variant (the file matching that tag inside the repo). Omit it to get prompted, or to fall back to the repo's default quant.
 
-This downloads into the standard Hugging Face cache (`~/.cache/huggingface/hub/models--<org>--<repo>/snapshots/<hash>/<file>.gguf`) — the same layout every `model =` path in `models.ini` already points at. So the usual flow for adding a new model is: run `llama-server -hf ...` once (or just to try the model interactively), then find the downloaded `.gguf` under that cache path and add a `[section]` to `models.ini` pointing `model =` at it, so it can be launched by name via the preset file afterwards.
-
-### Redownloading a model from an existing `model =` path
-
-The reverse also works: since `models.ini` paths already follow the HF cache layout, you can read `<org>/<repo>:<quant>` straight back out of any `model =` line and re-run `-hf` with it — useful after a wiped cache or on a new machine. Take the filename's trailing tag as the quant:
+This downloads into the standard Hugging Face cache — the same layout every `model =` path in `models.ini` already points at:
 
 ```
-models--unsloth--gemma-4-26B-A4B-it-qat-GGUF/snapshots/.../gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf
-        └────────────────┬─────────────────┘                                      └───┬────┘
-                     org/repo                                                     quant tag
+~/.cache/huggingface/hub/models--unsloth--gemma-4-26B-A4B-it-qat-GGUF/snapshots/.../gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf
+                                 └────────────────┬─────────────────┘                                      └───┬────┘
+                                              org/repo                                                     quant tag
 ```
 
-```bash
-llama-server -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL
-```
+So the usual flow for adding a new model is: run `llama-server -hf ...` once (or just to try the model interactively), then find the downloaded `.gguf` under that cache path and add a `[section]` to `models.ini` pointing `model =` at it, so it can be launched by name via the preset file afterwards.
 
-The `<hash>` snapshot directory is tied to whatever commit is current on HF at download time, so a fresh pull may land at a different hash than the one recorded in `models.ini`. If so, update the `model =` path to match the new snapshot dir.
+The mapping also works in reverse: given any `model =` path already in `models.ini`, you can read `<org>/<repo>:<quant>` straight back out of it and re-run `-hf` with that — useful after a wiped cache or on a new machine. The `<hash>` snapshot directory is tied to whatever commit is current on HF at download time, so a fresh pull may land at a different hash than the one recorded in `models.ini`. If so, update the `model =` path to match the new snapshot dir.
 
 ## llama.cpp/models.ini
 
