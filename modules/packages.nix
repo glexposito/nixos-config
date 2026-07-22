@@ -48,6 +48,7 @@
     uv
 
     # cli tools
+    btop
     fastfetch
     lm_sensors
     s-tui
