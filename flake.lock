@@ -27,11 +27,11 @@
     "caelestia-dots": {
       "flake": false,
       "locked": {
-        "lastModified": 1784565998,
-        "narHash": "sha256-Tvq3OL3iD5zXphtJp5QrIT2e0M4IYrrYpMAwJUrG664=",
+        "lastModified": 1784737033,
+        "narHash": "sha256-Y2SLNh3+kPhWuH2bKyEvRnere6adXJkYp8RP7pw0cko=",
         "owner": "caelestia-dots",
         "repo": "caelestia",
-        "rev": "ebb0637ba9294f571aa27e9f78c6fd5b9ab95655",
+        "rev": "888adfe29566eae96961db888d953f29db3c4932",
         "type": "github"
       },
       "original": {
@@ -71,11 +71,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784690067,
-        "narHash": "sha256-t86pRs7IPs3RTMPueWvvdcxyTFrctHAv2Jl7jnjsSf8=",
+        "lastModified": 1784789275,
+        "narHash": "sha256-cgRTWuG+u1tBPhm01JrId2k0Bni09phVJ1Q0BZlRd7M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6d8d61567802997f9ec3086b2a837e3ef31fac16",
+        "rev": "3b0e6bbd65869af1beadf5963a99befc179d209f",
         "type": "github"
       },
       "original": {
