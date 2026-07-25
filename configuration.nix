@@ -7,6 +7,7 @@
     ./modules/desktop
     ./modules/dotnet.nix
     ./modules/gaming.nix
+    ./modules/k3s.nix
     ./modules/networking.nix
     ./modules/packages.nix
     ./modules/podman.nix
