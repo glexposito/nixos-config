@@ -4,15 +4,7 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      function fish_greeting
-        set_color green
-        echo "    PRIORITY ONE"
-        echo "    INSURE RETURN OF ORGANISM"
-        echo "    FOR ANALYSIS."
-        echo "    ALL OTHER CONSIDERATIONS SECONDARY."
-        echo "    CREW EXPENDABLE."
-        set_color normal
-      end
+      set fish_greeting
     '';
     shellAliases = {
       cat = "bat";
