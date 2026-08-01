@@ -12,6 +12,7 @@
     gnome.enable = true;
     hyprland.enable = true;
     podman.enable = true;
+    k3s.enable = true;
   };
 
   networking.hostName = "mother";

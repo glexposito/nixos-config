@@ -10,6 +10,10 @@
       extraFlags = [ "--write-kubeconfig-mode=644" ];
     };
 
+    # Installed but not auto-started at boot; start on demand with
+    # `systemctl start k3s` (and `systemctl stop k3s` when done).
+    systemd.services.k3s.wantedBy = lib.mkForce [ ];
+
     environment.systemPackages = with pkgs; [
       kubectl
       kubernetes-helm
