@@ -2,7 +2,7 @@
 
 {
   services.xserver.xkb.layout = "us";
-  services.printing.enable = true;
+  services.printing.enable = false;
   services.fstrim.enable = true;
 
   services.scx = {
