@@ -21,6 +21,10 @@
   let
     username = "guille";
 
+    overlaysModule = {
+      nixpkgs.overlays = [ (import ./overlays/glaze-pin.nix) ];
+    };
+
     homeManagerModule = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
@@ -35,6 +39,7 @@
       modules = [
         ./hosts/zenbook
         ./configuration.nix
+        overlaysModule
         home-manager.nixosModules.home-manager
         homeManagerModule
       ];
@@ -46,6 +51,7 @@
       modules = [
         ./hosts/workstation
         ./configuration.nix
+        overlaysModule
         home-manager.nixosModules.home-manager
         homeManagerModule
       ];

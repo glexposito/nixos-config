@@ -21,6 +21,12 @@
       enable = true;
       systemd.enable = true;
       cli.enable = true;
+      # caelestia-shell builds its own pkgs.hyprland internally (its flake's
+      # own nixpkgs import, not ours), so our glaze overlay never reaches it.
+      # Force it to use our (overlaid, fixed) pkgs.hyprland instead.
+      package = inputs.caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.with-cli.override {
+        inherit (pkgs) hyprland;
+      };
     };
   };
 }
