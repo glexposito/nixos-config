@@ -12,6 +12,7 @@
     gnome.enable = true;
     hyprland.enable = true;
     podman.enable = true;
+    docker.enable = false;
     k3s.enable = true;
   };
 

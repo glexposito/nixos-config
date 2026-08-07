@@ -15,4 +15,6 @@
     enable = true;
     settings.git_protocol = "https";
   };
+
+  programs.lazygit.enable = true;
 }

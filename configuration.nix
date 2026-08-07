@@ -5,6 +5,7 @@
     ./modules/ai.nix
     ./modules/boot.nix
     ./modules/desktop
+    ./modules/docker.nix
     ./modules/dotnet.nix
     ./modules/gaming.nix
     ./modules/k3s.nix
