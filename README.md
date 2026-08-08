@@ -4,7 +4,7 @@ NixOS configuration for my machines.
 
 ## Hosts
 
-- **workstation** — Desktop with AMD GPU, gaming, .NET development, GNOME + Hyprland
+- **workstation** — Desktop with AMD GPU, AI tooling, gaming, .NET development, Docker, GNOME + Hyprland
 - **zenbook** — ASUS Zenbook portable setup, GNOME + Hyprland
 
 ## Structure
@@ -30,7 +30,7 @@ cd nixos-config
 
 ### Username
 
-The username is defined once, as `username` in the `let` block of `flake.nix`, and threaded through to every module that needs it (`configuration.nix`, `modules/packages.nix`, `home/default.nix`) via `specialArgs`/`extraSpecialArgs`. If you're forking this for your own machine, change that one line:
+The username is defined once, as `username` in the `let` block of `flake.nix`, and threaded through to every module that needs it (`configuration.nix`, `modules/docker.nix`, `modules/packages.nix`, `home/default.nix`) via `specialArgs`/`extraSpecialArgs`. If you're forking this for your own machine, change that one line:
 
 ```nix
 # flake.nix
@@ -80,6 +80,23 @@ Desktop environments are opt-in per host via `profiles.<name>.enable`:
 - **Hyprland** — `profiles.hyprland.enable = true` (uses [Caelestia Shell](https://github.com/caelestia-dots/shell) with Lua config from [caelestia-dots](https://github.com/caelestia-dots/caelestia))
 
 Hyprland user overrides live in `dots/caelestia/` and are deployed to `~/.config/caelestia/` via Home Manager. The upstream Hyprland Lua config comes from the `caelestia-dots` flake input and is symlinked to `~/.config/hypr/`.
+
+### Other profiles
+
+Additional features are opt-in per host using the same `profiles.<name>.enable` pattern:
+
+- **AI** — `profiles.ai.enable = true` installs llama.cpp with Vulkan support.
+- **.NET** — `profiles.dotnet.enable = true` installs Rider and the configured .NET SDKs.
+- **Gaming** — `profiles.gaming.enable = true` enables Steam, Gamescope and Gamemode.
+- **Docker** — `profiles.docker.enable = true` enables Docker and installs Docker Compose and Lazydocker.
+- **Podman** — `profiles.podman.enable = true` enables Podman with Docker compatibility and installs Podman Compose and Podman Desktop.
+- **k3s** — `profiles.k3s.enable = true` installs an on-demand k3s server with kubectl, Helm and k9s. The service does not start automatically.
+
+Docker and Podman are separate profiles; enable only the container runtime required by a host. The workstation currently uses Docker, while Podman and k3s are disabled.
+
+### Git tooling
+
+Home Manager configures Git, GitHub CLI and Lazygit in `home/git.nix`.
 
 ### Aliases
 
