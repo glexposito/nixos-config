@@ -11,9 +11,6 @@
     gaming.enable = true;
     gnome.enable = true;
     hyprland.enable = true;
-    podman.enable = false;
-    docker.enable = true;
-    k3s.enable = false;
   };
 
   networking.hostName = "mother";
