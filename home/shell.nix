@@ -32,4 +32,14 @@
   programs.ripgrep.enable = true;
 
   programs.starship.enable = true;
+
+  programs.mise = {
+    enable = true;
+    enableFishIntegration = true;
+    globalConfig.tools = {
+      terraform = "latest";
+      terragrunt = "1.1.2";
+      kubectl = "latest";
+    };
+  };
 }
