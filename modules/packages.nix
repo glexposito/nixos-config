@@ -46,7 +46,6 @@
     gnumake
     python3
     uv
-    azure-cli
 
     # cli tools
     btop
