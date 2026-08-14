@@ -29,14 +29,11 @@ The mapping also works in reverse: given any `model =` path already in `models.i
 
 A "models preset" file: each `[section]` is a model llama-server can serve, selected at launch with `--models-preset ~/.config/llama.cpp/models.ini --model-preset <name>` (or auto-loaded on first request — see `models-autoload` below). Copy to `~/.config/llama.cpp/models.ini` to use; the `llms` shell alias (`home/shell.nix`) points `llama-server` at this path.
 
+`version = 1` at the top of the file declares the models-preset format version, required by `--models-preset`.
+
 ### `[*]` — global defaults
 
-Applied to every model section unless overridden inside it.
-
-| Param | Meaning |
-|---|---|
-| `models-max` | Max number of models kept loaded in memory at once. `1` means loading a new model unloads the previous one — this box only has VRAM for one model at a time. |
-| `models-autoload` | If `1`, llama-server loads the requested model on the first incoming request instead of requiring it to be preloaded at startup. |
+Any param below can be set in `[*]` as a default applied to every model section, then overridden inside a specific `[section]` — e.g. `qwen3.8-27b` overrides `n-gpu-layers`/`fit` to force full GPU offload instead of the auto-fit default.
 
 ### Per-model params
 
@@ -45,21 +42,24 @@ Applied to every model section unless overridden inside it.
 | Param | Meaning |
 |---|---|
 | `model` | Absolute path to the `.gguf` weights file. |
+| `model-draft` | Absolute path to a separate draft model's `.gguf` weights, used for speculative decoding alongside `spec-type`. |
 | `device` | Backend device to offload to. `Vulkan0` is the first GPU on the Vulkan backend (used here instead of CUDA/ROCm for cross-vendor GPU support). |
-| `n-gpu-layers` | Number of transformer layers to offload to the GPU. `999` is a "just offload everything" value — larger than any model's actual layer count, so the whole model lands on GPU. |
+| `n-gpu-layers` | Number of transformer layers to offload to the GPU. `auto` (paired with `fit = on`) lets llama-server pick automatically; a section can override with an explicit "just offload everything" value like `999` — larger than any model's actual layer count — paired with `fit = off`. |
+| `fit` | When `on`, llama-server auto-tunes `n-gpu-layers` to fit available VRAM. Set `off` alongside an explicit `n-gpu-layers` to disable that and force a fixed value. |
 | `flash-attn` | Enables the FlashAttention kernel (`on`/`off`/`auto`). Faster and more memory-efficient attention computation; `on` forces it when the backend supports it. |
 | `ctx-size` | Context window in tokens — the max combined length of prompt + generated output. Bigger contexts cost more VRAM for the KV cache. |
-| `ubatch-size` | Physical micro-batch size used while processing the prompt (prefill). Larger values speed up prompt processing at the cost of more compute-buffer memory. |
-| `cache-type-k` / `cache-type-v` | Quantization applied to the K/V attention cache (e.g. `q8_0` instead of full-precision `f16`). Shrinks KV-cache VRAM usage — what makes long `ctx-size` values (64K–128K) affordable — at a small quality cost. |
+| `reasoning` | Enables the model's reasoning/thinking-mode output formatting, if its chat template supports it. |
+| `cache-type-k` / `cache-type-v` | Quantization applied to the main model's K/V attention cache (e.g. `q8_0` instead of full-precision `f16`). Shrinks KV-cache VRAM usage — what makes long `ctx-size` values (64K–128K) affordable — at a small quality cost. |
+| `cache-type-k-draft` / `cache-type-v-draft` | Same K/V cache quantization, applied to the draft model's cache instead of the main model's. |
+| `spec-type` | Speculative decoding method. `draft-mtp` uses the model's own Multi-Token Prediction head (`model-draft`) to propose draft tokens instead of running a fully separate draft model. |
+| `spec-draft-n-max` | Max number of speculative draft tokens proposed per step before the main model verifies them. |
 | `parallel` | Number of concurrent request "slots" the server reserves context for. `1` means one request at a time (no context splitting between parallel chats). |
 | `jinja` | Enables Jinja2 chat-template rendering (vs. a hardcoded template). Required for modern models whose chat template does tool-calling / thinking-block formatting. |
-| `chat-template-kwargs` | Extra JSON kwargs passed into the Jinja chat template. E.g. `{"enable_thinking": true}` turns on a model's reasoning/thinking mode if its template supports the flag. |
 
 **Sampling** — control how the next token is picked from the model's output distribution.
 
 | Param | Meaning |
 |---|---|
-| `samplers` | Explicit ordered list of sampler stages to apply (e.g. `temperature;top_p;top_k`). When omitted, llama-server uses its built-in default order. |
 | `temp` | Temperature. Scales the probability distribution before sampling — lower is more deterministic/focused, higher is more random/creative. |
 | `top-k` | Keep only the `k` most likely tokens before sampling, discarding the long tail. |
 | `top-p` | Nucleus sampling: keep the smallest set of tokens whose cumulative probability reaches `p`, discard the rest. |

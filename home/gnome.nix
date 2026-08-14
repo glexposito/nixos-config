@@ -1,6 +1,8 @@
 { pkgs, lib, osConfig ? {}, ... }:
 
 {
+  # osConfig is injected by home-manager's NixOS integration; outside it (e.g. standalone
+  # home-manager) osConfig is {}, profiles.gnome.enable is missing, and this block is skipped.
   config = lib.mkIf (osConfig.profiles.gnome.enable or false) {
     programs.gnome-shell = {
       enable = true;

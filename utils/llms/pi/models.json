@@ -5,9 +5,10 @@
       "api": "openai-completions",
       "apiKey": "none",
       "models": [
-      	{ "id": "gemma4-26b-a4b", "contextWindow": 65536 },
+        { "id": "gemma4-26b-a4b", "contextWindow": 65536 },
         { "id": "qwen3.5-9b", "contextWindow": 131072 },
-        { "id": "qwen3.6-35b-a3b", "contextWindow": 65536 }
+        { "id": "qwen3.6-35b-a3b", "contextWindow": 65536 },
+        { "id": "qwen3.8-27b", "contextWindow": 65536 }
       ]
     }
   }

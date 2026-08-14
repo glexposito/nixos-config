@@ -4,7 +4,7 @@ NixOS configuration for my machines.
 
 ## Hosts
 
-- **workstation** — Desktop with AMD GPU, AI tooling, gaming, .NET development, Docker, GNOME + Hyprland
+- **workstation** — Desktop with AMD GPU, GNOME + Hyprland (see `hosts/workstation/default.nix` for enabled profiles)
 - **zenbook** — ASUS Zenbook portable setup, GNOME + Hyprland
 
 ## Structure
@@ -92,7 +92,7 @@ Additional features are opt-in per host using the same `profiles.<name>.enable` 
 - **Podman** — `profiles.podman.enable = true` enables Podman with Docker compatibility and installs Podman Compose and Podman Desktop.
 - **k3s** — `profiles.k3s.enable = true` installs an on-demand k3s server with kubectl, Helm and k9s. The service does not start automatically.
 
-Docker and Podman are separate profiles; enable only the container runtime required by a host. The workstation currently uses Docker, while Podman and k3s are disabled.
+Docker and Podman are separate profiles; enable only the container runtime required by a host.
 
 ### Git tooling
 

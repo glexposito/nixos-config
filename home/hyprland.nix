@@ -4,6 +4,8 @@
     inputs.caelestia-shell.homeManagerModules.default
   ];
 
+  # osConfig is injected by home-manager's NixOS integration; outside it (e.g. standalone
+  # home-manager) osConfig is {}, profiles.hyprland.enable is missing, and this block is skipped.
   config = lib.mkIf (osConfig.profiles.hyprland.enable or false) {
     xdg.configFile."hypr" = {
       source = "${inputs.caelestia-dots}/hypr";
