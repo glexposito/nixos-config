@@ -8,7 +8,8 @@
       	{ "id": "gemma4-26b-a4b", "contextWindow": 65536 },
         { "id": "qwen3.5-9b", "contextWindow": 131072 },
         { "id": "qwen3.6-35b-a3b", "contextWindow": 65536 },
-        { "id": "ornith-9b", "contextWindow": 262144 }
+        { "id": "ornith-9b", "contextWindow": 262144 },
+        { "id": "lfm2.5-8b-a1b", "contextWindow": 128000 }
       ]
     }
   }
