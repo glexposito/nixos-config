@@ -4,6 +4,7 @@
   imports = [
     ./gnome.nix
     ./hyprland.nix
+    ./greetd.nix
   ];
 
   hardware.graphics = {
