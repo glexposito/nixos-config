@@ -34,13 +34,6 @@
     options = "--delete-older-than 30d";
   };
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = [
-    pkgs.stdenv.cc.cc.lib
-    pkgs.zlib
-    pkgs.openssl
-  ];
-
   zramSwap.enable = true;
 
   system.stateVersion = "26.05";

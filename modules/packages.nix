@@ -7,6 +7,13 @@
     package = pkgs.appimage-run.override { extraPkgs = p: [ p.icu ]; };
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = [
+    pkgs.stdenv.cc.cc.lib
+    pkgs.zlib
+    pkgs.openssl
+  ];
+
   programs.firefox.enable = true;
   programs.fish.enable = true;
   xdg.terminal-exec = {
