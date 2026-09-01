@@ -8,6 +8,7 @@
     '';
     shellAliases = {
       cat = "bat";
+      grep = "rg";
       nfu = "nix flake update --flake ~/nixos-config";
       nrs-w = "sudo nixos-rebuild switch --flake ~/nixos-config#workstation";
       nrs-z = "sudo nixos-rebuild switch --flake ~/nixos-config#zenbook";
