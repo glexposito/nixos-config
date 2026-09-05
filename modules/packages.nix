@@ -50,6 +50,7 @@
     nodejs_24
     rustup
     cargo-nextest
+    gcc
     gnumake
     python3
     uv
