@@ -52,6 +52,7 @@
     cargo-nextest
     gcc
     gnumake
+    nil
     python3
     uv
 
