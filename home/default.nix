@@ -6,6 +6,7 @@
     ./shell.nix
     ./terminals.nix
     ./editors.nix
+    ./file-managers.nix
     ./gnome.nix
     ./hyprland.nix
   ];

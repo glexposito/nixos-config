@@ -1,22 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
-  programs.yazi = {
-    enable = true;
-    enableFishIntegration = true;
-    settings = {
-      opener = {
-        edit = [{ run = ''micro "$@"''; block = true; }];
-      };
-    };
-  };
-
-  programs.superfile = {
-    enable = true;
-    settings = {
-      theme = "monokai";
-    };
-  };
+  home.packages = [ pkgs.zed-editor ];
 
   programs.micro = {
     enable = true;
