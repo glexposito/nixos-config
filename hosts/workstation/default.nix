@@ -11,6 +11,7 @@
     gaming.enable = true;
     gnome.enable = true;
     hyprland.enable = true;
+    docker.enable = true;
   };
 
   networking.hostName = "mother";
