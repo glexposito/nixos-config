@@ -1,4 +1,4 @@
-{ inputs, config, lib, osConfig ? {}, ... }:
+{ inputs, config, pkgs, lib, osConfig ? {}, ... }:
 
 {
   imports = [
@@ -7,6 +7,11 @@
   ];
 
   config = lib.mkIf (osConfig.profiles.mango.enable or false) {
+    # Required by the "Mango Layouts" noctalia plugin (plugins.enabled below)
+    # to parse `mmsg` output; without it the widget script fails silently and
+    # never renders anything on the bar.
+    home.packages = [ pkgs.jq ];
+
     wayland.windowManager.mango = {
       enable = true;
       systemd.enable = true;
@@ -110,6 +115,13 @@
         bar.default = {
           shadow = false;
           contact_shadow = false;
+          # noctalia has no "add one widget" option -- setting `start` replaces
+          # the whole lane, so this reproduces its built-in default
+          # (src/config/config_types.h: launcher, wallpaper, workspaces) with
+          # the Mango Layouts plugin widget (see plugins.enabled below) added
+          # next to workspaces. center/end are left undeclared and keep
+          # noctalia's own defaults untouched.
+          start = [ "launcher" "wallpaper" "workspaces" "ezequiel/mango_layouts:btn" ];
         };
         dock.shadow = false;
         shell.panel.shadow = false;
