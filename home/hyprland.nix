@@ -16,12 +16,16 @@
 
     xdg.configFile."caelestia/hypr-vars.lua".text = builtins.readFile ../dots/caelestia/hypr-vars.lua;
 
-    home.file.".local/share/wallpapers/nix-binary-black.png".source =
-      "${pkgs.nixos-artwork.wallpapers.binary-black}/share/backgrounds/nixos/nix-wallpaper-binary-black.png";
-
     programs.caelestia = {
       enable = true;
       systemd.enable = true;
+      # Defaults to the generic graphical-session.target, which mango (and
+      # any other compositor) also raises -- causing caelestia's shell to
+      # start underneath mango too. Hyprland creates its own
+      # hyprland-session.target transiently at startup (built in since
+      # https://wiki.hypr.land/Useful-Utilities/Systemd-start/), so scope
+      # caelestia to that instead.
+      systemd.target = "hyprland-session.target";
       cli.enable = true;
     };
   };

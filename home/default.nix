@@ -9,10 +9,14 @@
     ./file-managers.nix
     ./gnome.nix
     ./hyprland.nix
+    ./mango.nix
   ];
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
+
+  home.file.".local/share/wallpapers/nix-binary-black.png".source =
+    "${pkgs.nixos-artwork.wallpapers.binary-black}/share/backgrounds/nixos/nix-wallpaper-binary-black.png";
 
   gtk = {
     enable = true;

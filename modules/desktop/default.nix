@@ -4,6 +4,7 @@
   imports = [
     ./gnome.nix
     ./hyprland.nix
+    ./mango.nix
     ./greetd.nix
   ];
 

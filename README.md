@@ -4,8 +4,8 @@ NixOS configuration for my machines.
 
 ## Hosts
 
-- **workstation** — Desktop with AMD GPU, GNOME + Hyprland (see `hosts/workstation/default.nix` for enabled profiles)
-- **zenbook** — ASUS Zenbook portable setup, GNOME + Hyprland
+- **workstation** — Desktop with AMD GPU, GNOME + Hyprland + Mango (see `hosts/workstation/default.nix` for enabled profiles)
+- **zenbook** — ASUS Zenbook portable setup, GNOME + Hyprland + Mango
 
 ## Structure
 
@@ -78,8 +78,11 @@ Desktop environments are opt-in per host via `profiles.<name>.enable`:
 
 - **GNOME** — `profiles.gnome.enable = true`
 - **Hyprland** — `profiles.hyprland.enable = true` (uses [Caelestia Shell](https://github.com/caelestia-dots/shell) with Lua config from [caelestia-dots](https://github.com/caelestia-dots/caelestia))
+- **Mango** — `profiles.mango.enable = true` (uses [mango](https://github.com/mangowm/mango), a dwl-based Wayland compositor, with [Noctalia Shell](https://github.com/noctalia-dev/noctalia))
 
 Hyprland user overrides live in `dots/caelestia/` and are deployed to `~/.config/caelestia/` via Home Manager. The upstream Hyprland Lua config comes from the `caelestia-dots` flake input and is symlinked to `~/.config/hypr/`.
+
+Mango and Noctalia are both configured in `home/mango.nix`: mango's config sources its own packaged defaults (`/etc/mango/config.conf`, installed by `modules/desktop/mango.nix`) via `source-optional`, with keybinds and visual tuning layered on top; Noctalia's settings (theme, wallpaper, plugins) are declared under `programs.noctalia.settings`. Both compositors run alongside each other and are selectable per-session from the greetd login screen.
 
 ### Other profiles
 

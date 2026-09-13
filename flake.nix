@@ -15,6 +15,14 @@
       url = "github:caelestia-dots/caelestia";
       flake = false;
     };
+    mango = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -31,7 +39,7 @@
   in {
     nixosConfigurations.zenbook = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit username; };
+      specialArgs = { inherit username inputs; };
       modules = [
         ./hosts/zenbook
         ./configuration.nix
@@ -42,7 +50,7 @@
 
     nixosConfigurations.workstation = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit username; };
+      specialArgs = { inherit username inputs; };
       modules = [
         ./hosts/workstation
         ./configuration.nix
