@@ -104,7 +104,7 @@
         theme = {
           mode = "dark";
           source = "builtin";
-          builtin = "Catppuccin";
+          builtin = "Ayu";
         };
         wallpaper = {
           enabled = true;
@@ -119,6 +119,18 @@
         weather = {
           enabled = true;
           unit = "celsius";
+        };
+        idle.behavior = {
+          lock = {
+            timeout = 600;
+            action = "lock";
+            enabled = true;
+          };
+          lock-and-suspend = {
+            timeout = 900;
+            action = "lock_and_suspend";
+            enabled = true;
+          };
         };
         bar.default = {
           shadow = false;
