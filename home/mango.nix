@@ -112,6 +112,14 @@
           # QML app, not a shell, so it never expands "~".
           default.path = "${config.home.homeDirectory}/.local/share/wallpapers/nix-binary-black.png";
         };
+        location = {
+          auto_locate = false;
+          address = "Auckland, New Zealand";
+        };
+        weather = {
+          enabled = true;
+          unit = "celsius";
+        };
         bar.default = {
           shadow = false;
           contact_shadow = false;
