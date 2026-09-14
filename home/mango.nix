@@ -143,6 +143,12 @@
           # noctalia's own defaults untouched.
           start = [ "launcher" "wallpaper" "workspaces" "ezequiel/mango_layouts:btn" ];
         };
+        widget.launcher = {
+          # Swap the default "search" glyph for the NixOS snowflake, tinted
+          # like every other bar glyph instead of shown in its original colours.
+          custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          custom_image_colorize = true;
+        };
         dock.shadow = false;
         shell.panel.shadow = false;
 
