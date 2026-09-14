@@ -135,6 +135,7 @@
         bar.default = {
           shadow = false;
           contact_shadow = false;
+          scale = 1.10;
           # noctalia has no "add one widget" option -- setting `start` replaces
           # the whole lane, so this reproduces its built-in default
           # (src/config/config_types.h: launcher, wallpaper, workspaces) with
@@ -149,6 +150,7 @@
           custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           custom_image_colorize = true;
         };
+        widget.media.hide_when_no_media = true;
         dock.shadow = false;
         shell.panel.shadow = false;
 
