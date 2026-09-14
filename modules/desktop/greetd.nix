@@ -8,6 +8,7 @@
         user = "greeter";
         command = lib.concatStringsSep " " [
           (lib.getExe' pkgs.tuigreet "tuigreet")
+          "--cmd mango"
           "--time"
           "--remember" "--remember-session"
           "--asterisks"
