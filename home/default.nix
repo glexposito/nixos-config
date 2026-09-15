@@ -1,5 +1,9 @@
 { pkgs, username, ... }:
 
+let
+  firefoxDesktop = [ "firefox.desktop" ];
+  zedDesktop = [ "dev.zed.Zed.desktop" ];
+in
 {
   imports = [
     ./git.nix
@@ -51,6 +55,30 @@
     XCURSOR_THEME=Bibata-Original-Ice
     XCURSOR_SIZE=24
   '';
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = firefoxDesktop;
+      "application/toml" = zedDesktop;
+      "application/xhtml+xml" = firefoxDesktop;
+      "image/avif" = firefoxDesktop;
+      "image/bmp" = firefoxDesktop;
+      "image/gif" = firefoxDesktop;
+      "image/jpeg" = firefoxDesktop;
+      "image/png" = firefoxDesktop;
+      "image/svg+xml" = firefoxDesktop;
+      "image/webp" = firefoxDesktop;
+      "image/x-icon" = firefoxDesktop;
+      "text/html" = firefoxDesktop;
+      "x-scheme-handler/http" = firefoxDesktop;
+      "x-scheme-handler/https" = firefoxDesktop;
+      "x-scheme-handler/discord-464069837237518357" = [
+        "discord-464069837237518357.desktop"
+      ];
+      "x-scheme-handler/jetbrains" = [ "jetbrainsd.desktop" ];
+    };
+  };
 
   home.sessionPath = [ "$HOME/.local/bin" ];
 

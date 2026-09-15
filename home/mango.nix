@@ -53,7 +53,7 @@
           "SUPER,Return,spawn,kitty"
           "SUPER,w,spawn,firefox"
           "SUPER,c,spawn,zeditor"
-          "SUPER,e,spawn,kitty --override font_size=18 -- yazi"
+          "SUPER,e,spawn,kitty --override font_size=18 -- superfile"
           "NONE,Print,spawn,noctalia msg screenshot-region"
           "SUPER,space,spawn,noctalia msg panel-toggle launcher"
           "SUPER,s,spawn,noctalia msg panel-toggle control-center"
