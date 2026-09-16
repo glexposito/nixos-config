@@ -34,19 +34,19 @@ cd nixos-config
 Each account has a regular NixOS module under `users/`:
 
 - `users/guille.nix` is imported by `configuration.nix`, so Guille is available on both machines. He uses Fish, has admin access, and gets Docker access when the host enables the Docker profile.
-- `users/sol.nix` is imported only by `hosts/zenbook/default.nix`, so Sol is available only on the Zenbook. She uses the default Bash shell and has network management access.
+- `users/sol.nix` is imported only by `hosts/zenbook/default.nix`, so Sol is available only on the Zenbook. She uses Fish with the shared shell aliases and has network management access.
 
 Both accounts receive the shared `home/` configuration through `home-manager.sharedModules` in `flake.nix`. Home Manager derives each username and home directory from the corresponding NixOS account.
 
 To add an account, create `users/<name>.nix` with its `users.users.<name>` settings and `home-manager.users.<name>` configuration, then import it from the desired host. To make an account available on every host, import it from `configuration.nix`.
 
-After the first rebuild on the Zenbook, set Sol's login password:
+After adding a new user and rebuilding the target host, set their login password. Replace `username` with the new account's name:
 
 ```bash
-sudo passwd sol
+sudo passwd username
 ```
 
-Existing passwords are retained with NixOS's default `users.mutableUsers = true`. Keep Guille's username, home directory, and state versions unchanged when adding users.
+Existing passwords are retained with NixOS's default `users.mutableUsers = true`.
 
 ### Other personal details
 
