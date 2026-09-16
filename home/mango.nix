@@ -12,6 +12,13 @@
     # never renders anything on the bar.
     home.packages = [ pkgs.jq ];
 
+    # Defaults to the generic graphical-session.target, which every other
+    # compositor also raises -- causing noctalia to start underneath e.g.
+    # Hyprland too. Mango ships and activates its own mango-session.target
+    # (mangowm/mango@e835ca0), so scope noctalia to that instead, the same
+    # way hyprland.nix scopes caelestia to hyprland-session.target.
+    wayland.systemd.target = "mango-session.target";
+
     wayland.windowManager.mango = {
       enable = true;
       systemd.enable = true;
@@ -44,10 +51,6 @@
         env = [
           "QT_QPA_PLATFORMTHEME,gtk3"
         ];
-
-        # Noctalia's own docs recommend a plain exec-once over its systemd
-        # service on Mango.
-        exec-once = "noctalia";
 
         bind = [
           "SUPER,Return,spawn,kitty"
@@ -100,6 +103,7 @@
 
     programs.noctalia = {
       enable = true;
+      systemd.enable = true;
       settings = {
         theme = {
           mode = "dark";

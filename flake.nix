@@ -16,7 +16,7 @@
       flake = false;
     };
     mango = {
-      url = "github:mangowm/mango/0.17.0";
+      url = "github:mangowm/mango/0.17.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
@@ -29,38 +29,40 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
-  let
-    username = "guille";
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
+    let
+      username = "guille";
 
-    homeManagerModule = {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.backupFileExtension = "bak";
-      home-manager.users.${username} = import ./home;
-      home-manager.extraSpecialArgs = { inherit inputs username; };
-    };
-  in {
-    nixosConfigurations.zenbook = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit username inputs; };
-      modules = [
-        ./hosts/zenbook
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        homeManagerModule
-      ];
-    };
+      homeManagerModule = {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "bak";
+        home-manager.users.${username} = import ./home;
+        home-manager.extraSpecialArgs = { inherit inputs username; };
+      };
+    in
+    {
+      nixosConfigurations.zenbook = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit username inputs; };
+        modules = [
+          ./hosts/zenbook
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          homeManagerModule
+        ];
+      };
 
-    nixosConfigurations.workstation = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit username inputs; };
-      modules = [
-        ./hosts/workstation
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        homeManagerModule
-      ];
+      nixosConfigurations.workstation = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit username inputs; };
+        modules = [
+          ./hosts/workstation
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          homeManagerModule
+        ];
+      };
     };
-  };
 }
