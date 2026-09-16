@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../users/sol.nix
   ];
 
   profiles = {

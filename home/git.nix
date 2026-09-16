@@ -1,11 +1,10 @@
 { ... }:
 
 {
+  # Each account's Git identity is configured in users/<name>.nix.
   programs.git = {
     enable = true;
     settings = {
-      user.name = "Guillermo";
-      user.email = "glexposito@gmail.com";
       init.defaultBranch = "main";
       pull.rebase = true;
     };

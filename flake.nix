@@ -32,20 +32,18 @@
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
     let
-      username = "guille";
-
       homeManagerModule = {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "bak";
-        home-manager.users.${username} = import ./home;
-        home-manager.extraSpecialArgs = { inherit inputs username; };
+        home-manager.extraSpecialArgs = { inherit inputs; };
+        home-manager.sharedModules = [ ./home ];
       };
     in
     {
       nixosConfigurations.zenbook = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit username inputs; };
+        specialArgs = { inherit inputs; };
         modules = [
           ./hosts/zenbook
           ./configuration.nix
@@ -56,7 +54,7 @@
 
       nixosConfigurations.workstation = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit username inputs; };
+        specialArgs = { inherit inputs; };
         modules = [
           ./hosts/workstation
           ./configuration.nix

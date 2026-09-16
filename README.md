@@ -12,6 +12,7 @@ NixOS configuration for my machines.
 - `flake.nix` defines the flake inputs and host outputs.
 - `configuration.nix` contains shared NixOS settings imported by every host.
 - `home/` contains user-level Home Manager configuration.
+- `users/` contains each account's NixOS settings and Git identity.
 - `hosts/` contains per-machine configuration, including generated hardware files.
 - `modules/` contains reusable system profiles and feature modules that hosts can opt into.
 - `dots/` contains dotfiles managed by Home Manager (e.g. Caelestia/Hyprland overrides).
@@ -28,21 +29,30 @@ git clone https://github.com/glexposito/nixos-config.git
 cd nixos-config
 ```
 
-### Username
+### Users
 
-The username is defined once, as `username` in the `let` block of `flake.nix`, and threaded through to every module that needs it (`configuration.nix`, `modules/docker.nix`, `modules/packages.nix`, `home/default.nix`) via `specialArgs`/`extraSpecialArgs`. If you're forking this for your own machine, change that one line:
+Each account has a regular NixOS module under `users/`:
 
-```nix
-# flake.nix
-username = "guille";
+- `users/guille.nix` is imported by `configuration.nix`, so Guille is available on both machines. He uses Fish, has admin access, and gets Docker access when the host enables the Docker profile.
+- `users/sol.nix` is imported only by `hosts/zenbook/default.nix`, so Sol is available only on the Zenbook. She uses the default Bash shell and has network management access.
+
+Both accounts receive the shared `home/` configuration through `home-manager.sharedModules` in `flake.nix`. Home Manager derives each username and home directory from the corresponding NixOS account.
+
+To add an account, create `users/<name>.nix` with its `users.users.<name>` settings and `home-manager.users.<name>` configuration, then import it from the desired host. To make an account available on every host, import it from `configuration.nix`.
+
+After the first rebuild on the Zenbook, set Sol's login password:
+
+```bash
+sudo passwd sol
 ```
+
+Existing passwords are retained with NixOS's default `users.mutableUsers = true`. Keep Guille's username, home directory, and state versions unchanged when adding users.
 
 ### Other personal details
 
-A few more personal values aren't parameterized, since they're single-use leaf values rather than something referenced across files. Update these directly if forking:
+Update these values directly if forking:
 
-- `configuration.nix` — `description = "Guillermo"` (GECOS display name)
-- `home/git.nix` — `user.name` and `user.email`
+- `users/<name>.nix` — account name, display name, groups, shell, and Git identity. Sol's configured Git email is `sol@apollo.local`; replace it if she needs a different commit identity.
 - `configuration.nix` — `time.timeZone` and `i18n.defaultLocale`
 
 ### Hardware configuration
@@ -91,7 +101,7 @@ Additional features are opt-in per host using the same `profiles.<name>.enable` 
 - **AI** — `profiles.ai.enable = true` installs llama.cpp with Vulkan support.
 - **.NET** — `profiles.dotnet.enable = true` installs Rider and the configured .NET SDKs.
 - **Gaming** — `profiles.gaming.enable = true` enables Steam, Gamescope and Gamemode.
-- **Docker** — `profiles.docker.enable = true` enables Docker and installs Docker Compose and Lazydocker.
+- **Docker** — `profiles.docker.enable = true` enables Docker and installs Docker Compose and Lazydocker. User modules grant Docker access individually; currently only Guille receives it.
 - **Podman** — `profiles.podman.enable = true` enables Podman with Docker compatibility and installs Podman Compose and Podman Desktop.
 - **k3s** — `profiles.k3s.enable = true` installs an on-demand k3s server with kubectl, Helm and k9s. The service does not start automatically.
 
@@ -99,11 +109,11 @@ Docker and Podman are separate profiles; enable only the container runtime requi
 
 ### Git tooling
 
-Home Manager configures Git, GitHub CLI and Lazygit in `home/git.nix`.
+Home Manager configures Git, GitHub CLI and Lazygit in `home/git.nix`. Each account's Git identity is set in `users/<name>.nix`.
 
 ### Aliases
 
-Once rebuilt, the following shell aliases are available:
+Once rebuilt, the following aliases are available in Fish:
 
 - `nrs-w` — Rebuild and switch to the workstation configuration
 - `nrs-z` — Rebuild and switch to the zenbook configuration

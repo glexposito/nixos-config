@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 
 {
   programs.appimage = {
@@ -23,8 +23,6 @@
       GNOME = [ "kitty.desktop" ];
     };
   };
-
-  users.users.${username}.shell = pkgs.fish;
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

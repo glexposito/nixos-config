@@ -1,4 +1,4 @@
-{ username, ... }:
+{ ... }:
 
 {
   imports = [
@@ -13,16 +13,11 @@
     ./modules/packages.nix
     ./modules/podman.nix
     ./modules/services.nix
+    ./users/guille.nix
   ];
 
   time.timeZone = "Pacific/Auckland";
   i18n.defaultLocale = "en_NZ.UTF-8";
-
-  users.users.${username} = {
-    isNormalUser = true;
-    description = "Guillermo";
-    extraGroups = [ "networkmanager" "wheel" ];
-  };
 
   nixpkgs.config.allowUnfree = true;
 

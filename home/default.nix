@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 
 let
   firefoxDesktop = [ "firefox.desktop" ];
@@ -16,8 +16,7 @@ in
     ./mango.nix
   ];
 
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+  # NixOS supplies home.username and home.homeDirectory for each account.
 
   home.file.".local/share/wallpapers/nix-binary-black.png".source =
     "${pkgs.nixos-artwork.wallpapers.binary-black}/share/backgrounds/nixos/nix-wallpaper-binary-black.png";
