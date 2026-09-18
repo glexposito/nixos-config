@@ -90,6 +90,7 @@
           saturation = 1.0;
         };
         layer_animations = 0;
+        unfocused_opacity = 0.9;
         shadows = 1;
         layer_shadows = 0;
         shadow_only_floating = 0;
