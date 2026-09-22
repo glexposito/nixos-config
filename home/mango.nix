@@ -36,8 +36,9 @@
       # to land before "source": mango matches key bindings in file order and
       # stops at the first match, so our own binds must be parsed before the
       # sourced defaults to actually take priority over them (e.g. the
-      # default CTRL+Left/Right tag-switch, which otherwise eats word
-      # navigation in every app -- see bindp overrides below).
+      # default CTRL+Left/Right tag-switch and CTRL+SHIFT+Left/Right movewin,
+      # which otherwise eat word navigation/selection in every app -- see
+      # bindp overrides below).
       topPrefixes = [ "bind" "source" ];
 
       settings = {
@@ -69,11 +70,14 @@
         ];
 
         # `p` = pass the key through to the focused client too, so apps still
-        # get Ctrl+Left/Right for word navigation instead of losing it to
-        # mango's default tag-switch bind.
+        # get Ctrl+Left/Right for word navigation and Ctrl+Shift+Left/Right
+        # for word selection, instead of losing them to mango's default
+        # tag-switch/movewin binds.
         bindp = [
           "CTRL,Left,spawn,true"
           "CTRL,Right,spawn,true"
+          "CTRL+SHIFT,Left,spawn,true"
+          "CTRL+SHIFT,Right,spawn,true"
         ];
 
         # Recommended by Noctalia: prefer its own drop shadows over mango's
