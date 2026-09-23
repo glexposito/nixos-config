@@ -145,6 +145,9 @@
           shadow = false;
           contact_shadow = false;
           scale = 1.10;
+          # Defaults to 100 (inset from each screen edge); 0 makes the bar
+          # span the full screen width edge-to-edge.
+          margin_ends = 0;
           # noctalia has no "add one widget" option -- setting `start` replaces
           # the whole lane, so this reproduces its built-in default
           # (src/config/config_types.h: launcher, wallpaper, workspaces) with
