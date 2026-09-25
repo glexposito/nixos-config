@@ -116,7 +116,7 @@
         theme = {
           mode = "dark";
           source = "builtin";
-          builtin = "Ayu";
+          builtin = "Dracula";
           templates.builtin_ids = [ "mango" "gtk3" "gtk4" ];
         };
         wallpaper = {
