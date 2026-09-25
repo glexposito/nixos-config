@@ -20,12 +20,18 @@ in
 
   home.file.".local/share/wallpapers/nix-binary-black.png".source =
     "${pkgs.nixos-artwork.wallpapers.binary-black}/share/backgrounds/nixos/nix-wallpaper-binary-black.png";
+  # 4K redraw of nixos-artwork's dracula wallpaper, which only ships at 1080p.
+  home.file.".local/share/wallpapers/nix-dracula.png".source =
+    pkgs.runCommand "nix-dracula-4k.png" { nativeBuildInputs = [ pkgs.imagemagick pkgs.librsvg ]; } ''
+      rsvg-convert -w 380 ${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg -o logo.png
+      magick -size 3840x2160 xc:'#282a36' logo.png -gravity center -composite $out
+    '';
 
   gtk = {
     enable = true;
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
+      package = pkgs.tela-icon-theme;
+      name = "Tela-dracula-dark";
     };
     colorScheme = "dark";
   };

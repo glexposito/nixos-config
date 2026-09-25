@@ -4,7 +4,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "Monokai Classic";
+      theme = "Dracula";
       background-opacity = 0.95;
       background-opacity-cells = true;
       window-padding-x = 10;
@@ -17,7 +17,7 @@
     enable = true;
     settings = {
       main = {
-        include = "${pkgs.foot.src}/themes/monokai-pro";
+        include = "${pkgs.foot.src}/themes/dracula";
         font = "JetBrainsMono Nerd Font:pixelsize=15";
         pad = "10x0";
         dpi-aware = "yes";
@@ -43,7 +43,7 @@
 
   programs.kitty = {
     enable = true;
-    themeFile = "Monokai_Soda";
+    themeFile = "Dracula";
     font = {
       name = "JetBrainsMono Nerd Font";
       size = 12;

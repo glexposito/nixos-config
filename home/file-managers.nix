@@ -21,7 +21,7 @@
     package = inputs.superfile.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
       editor = "micro";
-      theme = "monokai";
+      theme = "dracula";
     };
   };
 }

@@ -1,12 +1,20 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.zed-editor ];
+  programs.zed-editor = {
+    enable = true;
+    extensions = [ "dracula" ];
+    userSettings.theme = {
+      mode = "dark";
+      light = "Ayu Light";
+      dark = "Dracula";
+    };
+  };
 
   programs.micro = {
     enable = true;
     settings = {
-      colorscheme = "monokai-dark";
+      colorscheme = "dracula-tc";
       diffgutter = true;
     };
   };

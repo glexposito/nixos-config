@@ -41,10 +41,8 @@
     adw-gtk3
     tela-icon-theme
     capitaine-cursors
-    nixos-artwork.wallpapers.binary-black
 
     # dev
-    zed-editor
     nodejs_24
     rustup
     cargo-nextest

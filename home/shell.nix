@@ -19,7 +19,7 @@
 
   programs.bat = {
     enable = true;
-    config.theme = "Monokai Extended";
+    config.theme = "Dracula";
   };
 
   programs.eza = {
