@@ -10,6 +10,8 @@
       window-padding-x = 10;
       maximize = true;
       gtk-single-instance = true;
+      quit-after-last-window-closed = true;
+      quit-after-last-window-closed-delay = "10m";
     };
   };
 

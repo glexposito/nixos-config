@@ -19,8 +19,8 @@
   xdg.terminal-exec = {
     enable = true;
     settings = {
-      default = [ "kitty.desktop" ];
-      GNOME = [ "kitty.desktop" ];
+      default = [ "com.mitchellh.ghostty.desktop" ];
+      GNOME = [ "com.mitchellh.ghostty.desktop" ];
     };
   };
 

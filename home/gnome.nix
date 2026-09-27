@@ -16,7 +16,7 @@
       menu-button-icon-image = 23;
     };
 
-    xdg.configFile."xdg-terminals.list".text = "kitty.desktop\n";
+    xdg.configFile."xdg-terminals.list".text = "com.mitchellh.ghostty.desktop\n";
 
     dconf.settings."org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];
@@ -33,8 +33,8 @@
     };
 
     dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      name = "Kitty";
-      command = "kitty";
+      name = "Ghostty";
+      command = "ghostty";
       binding = "<Super>Return";
     };
 
@@ -58,7 +58,7 @@
 
     dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
       name = "Yazi";
-      command = "kitty --start-as maximized --override font_size=18 -- yazi";
+      command = "ghostty --font-size=18 -e yazi";
       binding = "<Super>y";
     };
   };
