@@ -16,7 +16,7 @@
       flake = false;
     };
     mango = {
-      url = "github:mangowm/mango/0.17.3";
+      url = "github:mangowm/mango/0.17.4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
