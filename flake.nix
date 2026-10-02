@@ -16,11 +16,11 @@
       flake = false;
     };
     mango = {
-      url = "github:mangowm/mango/0.17.4";
+      url = "github:mangowm/mango/0.17.5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia/v5.2.0";
+      url = "github:noctalia-dev/noctalia/v5.2.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     superfile = {

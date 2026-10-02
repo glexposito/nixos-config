@@ -1,10 +1,22 @@
-{ inputs, config, pkgs, lib, osConfig ? {}, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  osConfig ? { },
+  ...
+}:
 
 {
   imports = [
     inputs.mango.hmModules.mango
     inputs.noctalia.homeModules.default
   ];
+
+  # home-manager now ships its own programs.noctalia (as programs/noctalia/);
+  # noctalia's module still disables the old programs/noctalia.nix path.
+  # Drop once noctalia updates its disabledModules.
+  disabledModules = [ "programs/noctalia" ];
 
   config = lib.mkIf (osConfig.profiles.mango.enable or false) {
     # Required by the "Mango Layouts" noctalia plugin (plugins.enabled below)
@@ -39,7 +51,10 @@
       # default CTRL+Left/Right tag-switch and CTRL+SHIFT+Left/Right movewin,
       # which otherwise eat word navigation/selection in every app -- see
       # bindp overrides below).
-      topPrefixes = [ "bind" "source" ];
+      topPrefixes = [
+        "bind"
+        "source"
+      ];
 
       settings = {
         source-optional = "/etc/mango/config.conf";
@@ -118,7 +133,11 @@
           mode = "dark";
           source = "builtin";
           builtin = "Dracula";
-          templates.builtin_ids = [ "mango" "gtk3" "gtk4" ];
+          templates.builtin_ids = [
+            "mango"
+            "gtk3"
+            "gtk4"
+          ];
         };
         wallpaper = {
           enabled = true;
@@ -159,7 +178,12 @@
           # the Mango Layouts plugin widget (see plugins.enabled below) added
           # next to workspaces. center/end are left undeclared and keep
           # noctalia's own defaults untouched.
-          start = [ "launcher" "wallpaper" "workspaces" "ezequiel/mango_layouts:btn" ];
+          start = [
+            "launcher"
+            "wallpaper"
+            "workspaces"
+            "ezequiel/mango_layouts:btn"
+          ];
         };
         widget.launcher = {
           # Swap the default "search" glyph for the NixOS snowflake, tinted
