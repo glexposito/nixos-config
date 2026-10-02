@@ -10,13 +10,7 @@
 {
   imports = [
     inputs.mango.hmModules.mango
-    inputs.noctalia.homeModules.default
   ];
-
-  # home-manager now ships its own programs.noctalia (as programs/noctalia/);
-  # noctalia's module still disables the old programs/noctalia.nix path.
-  # Drop once noctalia updates its disabledModules.
-  disabledModules = [ "programs/noctalia" ];
 
   config = lib.mkIf (osConfig.profiles.mango.enable or false) {
     # Required by the "Mango Layouts" noctalia plugin (plugins.enabled below)
