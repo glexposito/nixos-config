@@ -32,7 +32,7 @@ This script sets `LD_LIBRARY_PATH` to point at all of these in the Nix store.
 
 ### llms/llama.cpp/models.ini
 
-Reference configuration for [llama-server](https://github.com/ggerganov/llama.cpp) with local GGUF models. Defines model paths, Vulkan GPU offloading, context sizes, and sampling parameters. See [llms/README.md](llms/README.md) for a param-by-param explanation.
+Reference configuration for [llama-server](https://github.com/ggerganov/llama.cpp) with local GGUF models. Defines models (by Hugging Face repo and quant), Vulkan GPU offloading, context sizes, and sampling parameters. See [llms/README.md](llms/README.md) for a param-by-param explanation.
 
 Copy to `~/.config/llama.cpp/models.ini` to use.
 

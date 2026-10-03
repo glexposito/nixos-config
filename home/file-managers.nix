@@ -22,6 +22,7 @@
     settings = {
       editor = "micro";
       theme = "dracula";
+      ignore_missing_fields = true;
     };
   };
 }
