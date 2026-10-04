@@ -18,4 +18,7 @@
       diffgutter = true;
     };
   };
+
+  # Lets micro's external clipboard reach the Wayland system clipboard.
+  home.packages = [ pkgs.wl-clipboard ];
 }
