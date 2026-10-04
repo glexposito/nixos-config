@@ -26,8 +26,10 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 10d";
   };
+
+  nix.optimise.automatic = true;
 
   zramSwap.enable = true;
 
