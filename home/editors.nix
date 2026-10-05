@@ -19,6 +19,11 @@
     };
   };
 
+  programs.helix = {
+    enable = true;
+    settings.theme = "dracula";
+  };
+
   # Lets micro's external clipboard reach the Wayland system clipboard.
   home.packages = [ pkgs.wl-clipboard ];
 }

@@ -20,7 +20,7 @@
     enable = true;
     package = inputs.superfile.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
-      editor = "micro";
+      editor = "hx";
       theme = "dracula";
       ignore_missing_fields = true;
     };
