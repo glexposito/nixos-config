@@ -27,11 +27,11 @@
     "caelestia-dots": {
       "flake": false,
       "locked": {
-        "lastModified": 1791264928,
-        "narHash": "sha256-9FiKOcb0g+OvhAvcyFoyTWYEndSAvJ052q3oZP/UGMg=",
+        "lastModified": 1791359846,
+        "narHash": "sha256-kzHvG6fNVgCNpViuzC3tBbEeuFTNwsVd9XUzj/Oty2s=",
         "owner": "caelestia-dots",
         "repo": "caelestia",
-        "rev": "f64ad4f4a69bbab5fc19e354d69c48ebab98d952",
+        "rev": "248ce84f8b1951c1e93e9e1d37b572901d3a6895",
         "type": "github"
       },
       "original": {
