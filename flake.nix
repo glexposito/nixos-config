@@ -16,7 +16,7 @@
       flake = false;
     };
     mango = {
-      url = "github:mangowm/mango/0.18.0";
+      url = "github:mangowm/mango/0.17.5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     superfile = {
