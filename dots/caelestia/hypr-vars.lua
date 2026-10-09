@@ -1,6 +1,6 @@
 return {
-    terminal = "ghostty",
+    terminal = "kitty",
     cursorTheme = "Bibata-Original-Ice",
     editor = "zeditor",
-    fileExplorer = "ghostty --font-size=16 -e superfile",
+    fileExplorer = "kitty --override font_size=16 -- superfile",
 }

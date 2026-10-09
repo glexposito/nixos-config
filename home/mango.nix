@@ -63,10 +63,10 @@
         ];
 
         bind = [
-          "SUPER,Return,spawn,ghostty"
+          "SUPER,Return,spawn,kitty"
           "SUPER,w,spawn,firefox"
           "SUPER,c,spawn,zeditor"
-          "SUPER,e,spawn,ghostty --font-size=16 -e superfile"
+          "SUPER,e,spawn,kitty --override font_size=16 -- superfile"
           "SUPER+SHIFT,E,spawn,nautilus"
           "NONE,Print,spawn,noctalia msg screenshot-region"
           "SUPER,space,spawn,noctalia msg panel-toggle launcher"

@@ -55,6 +55,9 @@
       background_opacity = "0.95";
       window_padding_width = 10;
       hide_window_decorations = true;
+      cursor_trail = 3;
+      cursor_trail_decay = "0.1 0.4";
+      cursor_trail_start_threshold = 2;
     };
   };
 }
