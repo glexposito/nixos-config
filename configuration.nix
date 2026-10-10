@@ -13,6 +13,7 @@
     ./modules/packages.nix
     ./modules/podman.nix
     ./modules/services.nix
+    ./modules/virtualisation.nix
     ./users/guille.nix
   ];
 
