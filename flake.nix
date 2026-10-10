@@ -19,10 +19,6 @@
       url = "github:mangowm/mango/0.17.5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    superfile = {
-      url = "github:yorukot/superfile/v1.6.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =

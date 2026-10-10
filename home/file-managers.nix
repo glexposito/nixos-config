@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ ... }:
 
 {
   programs.yazi = {
@@ -18,7 +18,6 @@
 
   programs.superfile = {
     enable = true;
-    package = inputs.superfile.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
       editor = "hx";
       theme = "dracula";
