@@ -4,8 +4,40 @@ NixOS configuration for my machines.
 
 ## Hosts
 
-- **workstation** — Desktop with AMD GPU, GNOME + Hyprland + Mango (see `hosts/workstation/default.nix` for enabled profiles)
-- **zenbook** — ASUS Zenbook portable setup, GNOME + Hyprland + Mango
+These are my machines; each one lives in `hosts/<host>/`:
+
+- **workstation** (`mother`) — desktop with AMD GPU
+- **zenbook** (`apollo`) — ASUS Zenbook laptop
+
+Enabled profiles are listed in each host's `default.nix`.
+
+## Usage
+
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/glexposito/nixos-config.git
+   cd nixos-config
+   ```
+
+2. Copy the hardware config (`<host>` is `workstation` or `zenbook`):
+
+   ```bash
+   cp /etc/nixos/hardware-configuration.nix hosts/<host>/hardware-configuration.nix
+   ```
+
+3. Rebuild:
+
+   ```bash
+   sudo nixos-rebuild switch --flake .#<host>
+   ```
+
+### Using it on another machine
+
+1. Copy `hosts/zenbook/` to `hosts/<name>/`, set `networking.hostName`, and remove the `users/sol.nix` import.
+2. Add a `nixosConfigurations.<name>` entry in `flake.nix`.
+3. Replace `users/guille.nix` with your own `users/<you>.nix` and update the import in `configuration.nix`. Also set `time.timeZone` and `i18n.defaultLocale` there.
+4. `git add` the new files (flakes ignore untracked files), then follow the steps above.
 
 ## Structure
 
@@ -20,16 +52,7 @@ NixOS configuration for my machines.
 
 Host files should stay small and mostly describe machine-specific choices. Shared behavior belongs in `configuration.nix`, `home/`, or a module under `modules/`.
 
-## Usage
-
-Clone this repository, or fork it first if adapting it for another machine, then run the following commands from the repository root:
-
-```bash
-git clone https://github.com/glexposito/nixos-config.git
-cd nixos-config
-```
-
-### Users
+## Users
 
 Each account has a regular NixOS module under `users/`:
 
@@ -48,41 +71,7 @@ sudo passwd username
 
 Existing passwords are retained with NixOS's default `users.mutableUsers = true`.
 
-### Other personal details
-
-Update these values directly if forking:
-
-- `users/<name>.nix` — account name, display name, groups, shell, and Git identity. Sol's configured Git email is `sol@apollo.local`; replace it if she needs a different commit identity.
-- `configuration.nix` — `time.timeZone` and `i18n.defaultLocale`
-
-### Hardware configuration
-
-The `hosts/*/hardware-configuration.nix` files are machine-specific. Each one should contain the actual generated hardware config for that host. Before rebuilding, put the target machine's generated hardware config in the matching host folder. Run these commands from the repo root, replacing `<host>` with `workstation` or `zenbook`.
-
-If the machine already has a generated hardware config, copy it first:
-
-```bash
-cp /etc/nixos/hardware-configuration.nix hosts/<host>/hardware-configuration.nix
-```
-
-If that file does not exist, generate it directly into the host folder:
-
-```bash
-sudo nixos-generate-config --show-hardware-config > hosts/<host>/hardware-configuration.nix
-```
-
-Do not reuse another machine's generated file unless the disks, filesystems, and hardware are intentionally the same.
-
-Also review `hosts/<host>/default.nix` before reusing a host profile. It may contain hardware-specific defaults that are not in `hardware-configuration.nix`, such as the workstation AMD GPU settings.
-
-For a new machine, it is fine to start with only the shared imports and `networking.hostName`, then add host-specific settings as needed.
-
-```bash
-sudo nixos-rebuild switch --flake .#workstation
-sudo nixos-rebuild switch --flake .#zenbook
-```
-
-### Desktop profiles
+## Desktop profiles
 
 Desktop environments are opt-in per host via `profiles.<name>.enable`:
 
@@ -94,22 +83,14 @@ Hyprland user overrides live in `dots/caelestia/` and are deployed to `~/.config
 
 Mango and Noctalia are both configured in `home/mango.nix`: mango's config sources its own packaged defaults (`/etc/mango/config.conf`, installed by `modules/desktop/mango.nix`) via `source-optional`, with keybinds and visual tuning layered on top; Noctalia's settings (theme, wallpaper, plugins) are declared under `programs.noctalia.settings`. Both compositors run alongside each other and are selectable per-session from the greetd login screen.
 
-### Other profiles
-
-Additional features (AI, .NET, gaming, containers, k3s, virtualisation, …) are opt-in per host using the same `profiles.<name>.enable` pattern. See `modules/*.nix` for the available profiles and what each one installs.
-
-### Git tooling
+## Git tooling
 
 Home Manager configures Git, GitHub CLI and Lazygit in `home/git.nix`. Each account's Git identity is set in `users/<name>.nix`.
 
-### Aliases
+## Other profiles
 
-Once rebuilt, the following aliases are available in Fish:
+Additional features (AI, .NET, gaming, containers, k3s, virtualisation, …) are opt-in per host using the same `profiles.<name>.enable` pattern. See `modules/*.nix` for the available profiles and what each one installs.
 
-- `nrs-w` — Rebuild and switch to the workstation configuration
-- `nrs-z` — Rebuild and switch to the zenbook configuration
-- `nfu` — Update this flake's lock file
-- `llms` — Start llama.cpp server with the configured model preset
-- `ff` — Run fastfetch with the example 32 preset
-- `cat` — Use `bat`
-- `ls`, `ll`, `la`, `lla`, `lt` — eza-powered listing aliases
+## Aliases
+
+Fish aliases are defined in `home/shell.nix`.
