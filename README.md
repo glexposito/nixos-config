@@ -96,16 +96,7 @@ Mango and Noctalia are both configured in `home/mango.nix`: mango's config sourc
 
 ### Other profiles
 
-Additional features are opt-in per host using the same `profiles.<name>.enable` pattern:
-
-- **AI** — `profiles.ai.enable = true` installs llama.cpp with Vulkan support.
-- **.NET** — `profiles.dotnet.enable = true` installs Rider and the configured .NET SDKs.
-- **Gaming** — `profiles.gaming.enable = true` enables Steam, Gamescope and Gamemode.
-- **Docker** — `profiles.docker.enable = true` enables Docker and installs Docker Compose and Lazydocker. User modules grant Docker access individually; currently only Guille receives it.
-- **Podman** — `profiles.podman.enable = true` enables Podman with Docker compatibility and installs Podman Compose and Podman Desktop.
-- **k3s** — `profiles.k3s.enable = true` installs an on-demand k3s server with kubectl, Helm and k9s. The service does not start automatically.
-
-Docker and Podman are separate profiles; enable only the container runtime required by a host.
+Additional features (AI, .NET, gaming, containers, k3s, virtualisation, …) are opt-in per host using the same `profiles.<name>.enable` pattern. See `modules/*.nix` for the available profiles and what each one installs.
 
 ### Git tooling
 
