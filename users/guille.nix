@@ -5,7 +5,8 @@
     isNormalUser = true;
     description = "Guillermo";
     extraGroups = [ "networkmanager" "wheel" ]
-      ++ lib.optional config.profiles.docker.enable "docker";
+      ++ lib.optional config.profiles.docker.enable "docker"
+      ++ lib.optional config.profiles.gaming.enable "gamemode";
     shell = pkgs.fish;
   };
 
