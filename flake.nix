@@ -16,7 +16,7 @@
       flake = false;
     };
     mango = {
-      url = "github:mangowm/mango/0.18.1";
+      url = "github:mangowm/mango/0.18.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
