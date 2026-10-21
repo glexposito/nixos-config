@@ -5,11 +5,6 @@
   services.printing.enable = false;
   services.fstrim.enable = true;
 
-  services.scx = {
-    enable = true;
-    scheduler = "scx_bpfland";
-  };
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
