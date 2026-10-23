@@ -102,6 +102,23 @@
       # a solid disc with a tiny logo (caelestia-dots/shell#416). Use the plain
       # snowflake instead, same as mango's launcher button.
       settings.general.logo = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      # Replaces caelestia's whole default list (lock 3m, screen off 5m,
+      # suspend 10m), so the screen-off step has to be restated too.
+      settings.general.idle.timeouts = [
+        {
+          timeout = 600;
+          idleAction = "lock";
+        }
+        {
+          timeout = 720;
+          idleAction = "dpms off";
+          returnAction = "dpms on";
+        }
+        {
+          timeout = 900;
+          idleAction = [ "suspendThenHibernate" ];
+        }
+      ];
     };
   };
 }
