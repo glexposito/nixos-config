@@ -43,9 +43,10 @@
       # Both come from programs.hyprland in modules/desktop/hyprland.nix.
       package = null;
       portalPackage = null;
-      # Hyprland already raises hyprland-session.target itself (see
-      # programs.caelestia.systemd.target below).
-      systemd.enable = false;
+      # systemd.enable (default true) creates hyprland-session.target, bound to
+      # graphical-session.target, and starts it on hyprland.start. Hyprland
+      # does not do this itself; without it xdg-desktop-portal (Requisite=
+      # graphical-session.target) never starts.
 
       settings = {
         # Locals render at the very top of hyprland.lua, so caelestia's
@@ -86,14 +87,10 @@
 
     programs.caelestia = {
       enable = true;
-      systemd.enable = true;
-      # Defaults to the generic graphical-session.target, which mango (and
-      # any other compositor) also raises -- causing caelestia's shell to
-      # start underneath mango too. Hyprland creates its own
-      # hyprland-session.target transiently at startup (built in since
-      # https://wiki.hypr.land/Useful-Utilities/Systemd-start/), so scope
-      # caelestia to that instead.
-      systemd.target = "hyprland-session.target";
+      # caelestia-dots' execs.lua already starts the shell on hyprland.start
+      # (`caelestia shell -d`, which passes quickshell's --no-duplicate). The
+      # service runs quickshell without it, so enabling both spawns two bars.
+      systemd.enable = false;
       cli.enable = true;
       # caelestia-cli otherwise writes Papirus-{Dark,Light} (not installed) as
       # the GTK/Qt icon theme whenever it applies a scheme; match gtk.iconTheme.

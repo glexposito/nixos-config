@@ -21,8 +21,7 @@
     # Defaults to the generic graphical-session.target, which every other
     # compositor also raises -- causing noctalia to start underneath e.g.
     # Hyprland too. Mango ships and activates its own mango-session.target
-    # (mangowm/mango@e835ca0), so scope noctalia to that instead, the same
-    # way hyprland.nix scopes caelestia to hyprland-session.target.
+    # (mangowm/mango@e835ca0), so scope noctalia to that instead.
     wayland.systemd.target = "mango-session.target";
 
     wayland.windowManager.mango = {
