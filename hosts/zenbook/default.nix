@@ -8,7 +8,7 @@
 
   profiles = {
     gnome.enable = true;
-    hyprland.enable = false;
+    hyprland.enable = true;
     mango.enable = true;
   };
 
