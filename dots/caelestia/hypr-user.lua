@@ -16,5 +16,5 @@ local vars = require("variables")
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(vars.terminal))
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("caelestia wallpaper -f ~/.local/share/wallpapers/nix-binary-black.png")
+    hl.exec_cmd("caelestia scheme set -n dracula && caelestia wallpaper -f ~/.local/share/wallpapers/caelestia.webp")
 end)

@@ -10,7 +10,7 @@
     dotnet.enable = true;
     gaming.enable = true;
     gnome.enable = true;
-    hyprland.enable = false;
+    hyprland.enable = true;
     mango.enable = true;
     docker.enable = true;
   };

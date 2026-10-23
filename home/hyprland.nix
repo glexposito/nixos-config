@@ -1,4 +1,4 @@
-{ inputs, lib, osConfig ? {}, ... }:
+{ inputs, lib, pkgs, osConfig ? {}, ... }:
 {
   imports = [
     inputs.caelestia-shell.homeManagerModules.default
@@ -16,6 +16,9 @@
 
     xdg.configFile."caelestia/hypr-vars.lua".text = builtins.readFile ../dots/caelestia/hypr-vars.lua;
 
+    home.file.".local/share/wallpapers/caelestia.webp".source =
+      "${inputs.caelestia-shell}/assets/wallpaper.webp";
+
     programs.caelestia = {
       enable = true;
       systemd.enable = true;
@@ -27,6 +30,13 @@
       # caelestia to that instead.
       systemd.target = "hyprland-session.target";
       cli.enable = true;
+      # caelestia-cli otherwise writes Papirus-{Dark,Light} (not installed) as
+      # the GTK/Qt icon theme whenever it applies a scheme; match gtk.iconTheme.
+      cli.settings.theme.iconTheme = "Tela-dracula-dark";
+      # Tela's nix-snowflake sits on a round badge, which caelestia tints into
+      # a solid disc with a tiny logo (caelestia-dots/shell#416). Use the plain
+      # snowflake instead, same as mango's launcher button.
+      settings.general.logo = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
     };
   };
 }

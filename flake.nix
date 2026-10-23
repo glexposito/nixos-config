@@ -7,9 +7,22 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Top-level so `nix flake update` moves them with nixpkgs; otherwise they
+    # stay frozen at whatever caelestia-shell's tagged flake.lock pins.
+    caelestia-cli = {
+      url = "github:caelestia-dots/cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.caelestia-shell.follows = "caelestia-shell";
+    };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     caelestia-shell = {
       url = "github:caelestia-dots/shell/v2.5.0";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.caelestia-cli.follows = "caelestia-cli";
+      inputs.quickshell.follows = "quickshell";
     };
     caelestia-dots = {
       url = "github:caelestia-dots/caelestia";
