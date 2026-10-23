@@ -7,14 +7,79 @@
   # osConfig is injected by home-manager's NixOS integration; outside it (e.g. standalone
   # home-manager) osConfig is {}, profiles.hyprland.enable is missing, and this block is skipped.
   config = lib.mkIf (osConfig.profiles.hyprland.enable or false) {
-    xdg.configFile."hypr" = {
-      source = "${inputs.caelestia-dots}/hypr";
-      recursive = true;
+    # Everything from caelestia-dots' hypr/ except hyprland.lua, which the
+    # hyprland module below generates instead (and dofile()s caelestia's).
+    xdg.configFile = {
+      "hypr/hyprland" = {
+        source = "${inputs.caelestia-dots}/hypr/hyprland";
+        recursive = true;
+      };
+      "hypr/utils" = {
+        source = "${inputs.caelestia-dots}/hypr/utils";
+        recursive = true;
+      };
+      "hypr/variables.lua".source = "${inputs.caelestia-dots}/hypr/variables.lua";
+      # Linked as a single file so scheme/ stays writable: caelestia writes
+      # scheme/current.lua next to it at runtime.
+      "hypr/scheme/default.lua".source = "${inputs.caelestia-dots}/hypr/scheme/default.lua";
+
+      # Overrides for caelestia-dots' variables.lua (used by its keybinds,
+      # env and rules), merged in by its hyprland.lua before loading them.
+      "caelestia/hypr-vars.lua".text = "return ${lib.generators.toLua { } {
+        terminal = "kitty";
+        kbTerminal = [
+          "SUPER + T" # caelestia's default
+          "SUPER + Return"
+        ];
+        cursorTheme = "Bibata-Original-Ice";
+        editor = "zeditor";
+        fileExplorer = "kitty --override font_size=16 -- superfile";
+      }}\n";
     };
 
-    xdg.configFile."caelestia/hypr-user.lua".text = builtins.readFile ../dots/caelestia/hypr-user.lua;
+    wayland.windowManager.hyprland = {
+      enable = true;
+      configType = "lua";
+      # Both come from programs.hyprland in modules/desktop/hyprland.nix.
+      package = null;
+      portalPackage = null;
+      # Hyprland already raises hyprland-session.target itself (see
+      # programs.caelestia.systemd.target below).
+      systemd.enable = false;
 
-    xdg.configFile."caelestia/hypr-vars.lua".text = builtins.readFile ../dots/caelestia/hypr-vars.lua;
+      settings = {
+        # Locals render at the very top of hyprland.lua, so caelestia's
+        # defaults load before the overrides below (e.g. its env.lua sets
+        # QT_QPA_PLATFORMTHEME=qtengine, which ours has to come after).
+        caelestia._var = lib.generators.mkLuaInline ''dofile("${inputs.caelestia-dots}/hypr/hyprland.lua")'';
+
+        monitor = [
+          {
+            output = "DP-3";
+            mode = "3840x2160@240";
+            scale = 1;
+          }
+          {
+            output = "eDP-1";
+            mode = "2880x1800@90";
+            scale = 1.25;
+          }
+        ];
+
+        env._args = [
+          "QT_QPA_PLATFORMTHEME"
+          "gtk3"
+        ];
+
+        on._args = [
+          "hyprland.start"
+          (lib.generators.mkLuaInline ''
+            function()
+              hl.exec_cmd("caelestia scheme set -n dracula && caelestia wallpaper -f ~/.local/share/wallpapers/caelestia.webp")
+            end'')
+        ];
+      };
+    };
 
     home.file.".local/share/wallpapers/caelestia.webp".source =
       "${inputs.caelestia-shell}/assets/wallpaper.webp";
