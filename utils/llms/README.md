@@ -25,9 +25,9 @@ To add it permanently, add a `[section]` to `models.ini` with that `hf-repo` and
 
 ## llama.cpp/models.ini
 
-A "models preset" file for llama-server's router mode: each `[section]` is a model the server can serve, and the section name is the model ID clients request. Copy to `~/.config/llama.cpp/models.ini` to use; the `llms` shell alias (`home/shell.nix`) starts `llama-server` with `--models-preset` pointing at this path.
+A "models preset" file for llama-server's router mode: each `[section]` is a model the server can serve, and the section name is the model ID clients request. Copy to `~/.config/llama.cpp/models.ini` to use; the `llama-serve` shell alias (`home/shell.nix`) starts `llama-server` with `--models-preset` pointing at this path.
 
-Models are loaded on demand when a request names them (`--models-autoload`, enabled by default). `--models-max` caps how many stay loaded at once; the `llms` alias sets it to `1`, so requesting a different model unloads the current one first.
+Models are loaded on demand when a request names them (`--models-autoload`, enabled by default). `--models-max` caps how many stay loaded at once; the `llama-serve` alias sets it to `1`, so requesting a different model unloads the current one first.
 
 `version = 1` at the top of the file declares the models-preset format version, required by `--models-preset`.
 
@@ -75,7 +75,6 @@ Every key maps to the `llama-server` CLI flag of the same name (`llama-server --
 | `min-p` | Discard tokens whose probability is below `min-p` × (probability of the most likely token). A floor relative to the top candidate, rather than a fixed count (`top-k`) or cumulative mass (`top-p`). |
 | `repeat-penalty` | Penalizes tokens already seen recently to discourage repetition/loops. `1.0` = no penalty. |
 | `presence-penalty` | Flat penalty applied to any token that has appeared at all so far in the output, regardless of how often — discourages reusing the same vocabulary. `0.0` = no penalty. |
-| `frequency-penalty` | Penalty that grows with how many times a token has already appeared. `0.0` = no penalty. |
 
 ## pi/models.json
 
