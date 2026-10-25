@@ -29,7 +29,7 @@
       flake = false;
     };
     mango = {
-      url = "github:mangowm/mango/0.18.2";
+      url = "github:mangowm/mango/0.18.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
