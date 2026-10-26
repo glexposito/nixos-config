@@ -4,6 +4,8 @@ NixOS configuration for my machines.
 
 ### Hyprland + Caelestia
 
+![Caelestia lock screen](assets/celestia-lock-screen.png)
+
 ![Hyprland with Caelestia Shell](assets/hyprland.png)
 
 ### Mango + Noctalia
