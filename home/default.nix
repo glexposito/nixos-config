@@ -14,6 +14,7 @@ in
     ./gnome.nix
     ./hyprland.nix
     ./mango.nix
+    ./gaming.nix
   ];
 
   # NixOS supplies home.username and home.homeDirectory for each account.
