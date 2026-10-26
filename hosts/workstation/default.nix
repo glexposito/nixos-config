@@ -12,7 +12,6 @@
     gnome.enable = true;
     hyprland.enable = true;
     mango.enable = true;
-    docker.enable = true;
   };
 
   networking.hostName = "mother";
