@@ -72,6 +72,11 @@
           "gtk3"
         ];
 
+        bind._args = [
+          "SUPER + SHIFT + E"
+          (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("nautilus")'')
+        ];
+
         on._args = [
           "hyprland.start"
           (lib.generators.mkLuaInline ''
