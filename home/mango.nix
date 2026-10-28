@@ -35,7 +35,7 @@
       # mangowm/mango.
       autostart_sh = "true";
 
-      # Pulls in mango's packaged default config (see modules/desktop/mango.nix)
+      # Pulls in mango's packaged default config (see modules/profiles/desktop/mango.nix)
       # before our overrides, so we keep its built-in keybinds/dispatchers
       # instead of replacing the whole config from scratch. "bind" also has
       # to land before "source": mango matches key bindings in file order and

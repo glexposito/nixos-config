@@ -46,7 +46,7 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
    }
    ```
 
-   Available profiles are defined in `modules/`. For a full example, see `hosts/workstation/default.nix`, my desktop with an AMD GPU.
+   Available profiles are defined in `modules/profiles/`. For a full example, see `hosts/workstation/default.nix`, my desktop with an AMD GPU.
 
 4. Register the host in `flake.nix`, next to the existing ones:
 
@@ -97,10 +97,11 @@ Existing passwords are retained with NixOS's default `users.mutableUsers = true`
 - `home/` contains user-level Home Manager configuration (e.g. Git tooling in `home/git.nix`, Fish aliases in `home/shell.nix`).
 - `users/` contains each account's NixOS settings and Git identity.
 - `hosts/` contains per-machine configuration, including generated hardware files. Mine are `workstation` (`mother`, desktop with AMD GPU) and `zenbook` (`apollo`, ASUS Zenbook laptop).
-- `modules/` contains reusable system profiles and feature modules that hosts can opt into.
+- `modules/core/` contains system modules applied to every host (boot, networking, packages, services, graphics, greetd).
+- `modules/profiles/` contains opt-in features, each toggled per host with `profiles.<name>.enable`.
 - `utils/` contains personal scripts and reference configs for things not covered by the declarative system configuration (e.g. llama.cpp model presets).
 
-Host files should stay small and mostly describe machine-specific choices. Shared behavior belongs in `configuration.nix`, `home/`, or a module under `modules/`.
+Host files should stay small and mostly describe machine-specific choices. Shared behavior belongs in `configuration.nix`, `home/`, or a module under `modules/core/`.
 
 ## Profiles
 
@@ -112,4 +113,4 @@ Features are opt-in per host via `profiles.<name>.enable`. Desktop environments:
 
 Hyprland + Caelestia is configured in `home/hyprland.nix`, and Mango + Noctalia in `home/mango.nix`. With both enabled, pick one per session from the greetd login screen.
 
-Other features (AI, .NET, gaming, containers, k3s, virtualisation, …) use the same pattern. See `modules/` for what each one installs.
+Other features (AI, .NET, gaming, containers, k3s, virtualisation, …) use the same pattern. See `modules/profiles/` for what each one installs.
