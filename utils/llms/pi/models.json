@@ -1,14 +1,16 @@
 {
   "providers": {
     "llama-server": {
-      "baseUrl": "http://localhost:8080/v1",
+      "baseUrl": "http://localhost:9931/v1",
       "api": "openai-completions",
       "apiKey": "none",
       "models": [
         { "id": "gemma4-12b", "contextWindow": 262144 },
         { "id": "ornith-1.5-9b", "contextWindow": 262144 },
         { "id": "qwen3.8-27b", "contextWindow": 131072 },
-        { "id": "ornith-1.5-35b-a3b", "contextWindow": 131072 }
+        { "id": "ornith-1.5-35b-a3b", "contextWindow": 131072 },
+        { "id": "lfm2.5-24b-a2b", "contextWindow": 131072 },
+        { "id": "bonsai2-27b", "contextWindow": 131072 }
       ]
     }
   }
