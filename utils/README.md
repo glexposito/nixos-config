@@ -38,6 +38,6 @@ Copy to `~/.config/llama.cpp/models.ini` to use.
 
 ### llms/pi/models.json
 
-Configuration to make local llama-server models visible in [Pi](https://pi.dev/) agentic code. Points Pi at the local llama-server OpenAI-compatible endpoint (`http://localhost:8080/v1`) and registers the available models with their context windows.
+Configuration to make local llama-server models visible in [Pi](https://pi.dev/) agentic code. Points Pi at the local llama-server OpenAI-compatible endpoint (`http://localhost:9931/v1`) and registers the available models with their context windows.
 
 Copy to `~/.pi/agent/models.json` to use.
