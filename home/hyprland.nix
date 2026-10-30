@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, osConfig ? {}, ... }:
+{ inputs, lib, osConfig ? {}, ... }:
 {
   imports = [
     inputs.caelestia-shell.homeManagerModules.default
@@ -100,10 +100,9 @@
       # caelestia-cli otherwise writes Papirus-{Dark,Light} (not installed) as
       # the GTK/Qt icon theme whenever it applies a scheme; match gtk.iconTheme.
       cli.settings.theme.iconTheme = "Tela-dracula-dark";
-      # Tela's nix-snowflake sits on a round badge, which caelestia tints into
-      # a solid disc with a tiny logo (caelestia-dots/shell#416). Use the plain
-      # snowflake instead, same as mango's launcher button.
-      settings.general.logo = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      # Unset falls back to the os-release logo, Tela's badged nix-snowflake,
+      # which caelestia tints into a solid disc (caelestia-dots/shell#416).
+      settings.general.logo = "caelestia";
       # Replaces caelestia's whole default list (lock 3m, screen off 5m,
       # suspend 10m), so the screen-off step has to be restated too.
       settings.general.idle.timeouts = [

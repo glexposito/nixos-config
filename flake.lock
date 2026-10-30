@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793164039,
-        "narHash": "sha256-KBb8SzAiJyr+lgDz/dPb4HYKk2xVx1fr+xs4xBSfOnk=",
+        "lastModified": 1793337590,
+        "narHash": "sha256-IqNCBUcfvrhXOpymrTP31n3sgQ6lZOwqzlWBwK80ahw=",
         "owner": "caelestia-dots",
         "repo": "cli",
-        "rev": "451975d74062a7ebdcf1c046e34506a5a86caa48",
+        "rev": "f660eb88d7a4a958a5199f000679e2f530364870",
         "type": "github"
       },
       "original": {
