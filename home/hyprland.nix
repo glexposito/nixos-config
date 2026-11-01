@@ -54,18 +54,10 @@
         # QT_QPA_PLATFORMTHEME=qtengine, which ours has to come after).
         caelestia._var = lib.generators.mkLuaInline ''dofile("${inputs.caelestia-dots}/hypr/hyprland.lua")'';
 
-        monitor = [
-          {
-            output = "DP-3";
-            mode = "3840x2160@240";
-            scale = 1;
-          }
-          {
-            output = "eDP-1";
-            mode = "2880x1800@90";
-            scale = 1.25;
-          }
-        ];
+        monitor = map (m: {
+          inherit (m) output scale;
+          mode = "${toString m.width}x${toString m.height}@${toString m.refresh}";
+        }) osConfig.monitors;
 
         env._args = [
           "QT_QPA_PLATFORMTHEME"

@@ -49,10 +49,10 @@
       settings = {
         source_optional = "/etc/mango/config.conf";
 
-        monitor_rule = [
-          "name:^DP-3$,width:3840,height:2160,refresh:240,x:0,y:0,scale:1"
-          "name:^eDP-1$,width:2880,height:1800,refresh:90,x:0,y:0,scale:1.25"
-        ];
+        monitor_rule = map (
+          m:
+          "name:^${m.output}$,width:${toString m.width},height:${toString m.height},refresh:${toString m.refresh},x:0,y:0,scale:${toString m.scale}"
+        ) osConfig.monitors;
 
         env = [
           "QT_QPA_PLATFORMTHEME,gtk3"
