@@ -1,0 +1,31 @@
+name: Update flake inputs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 */3 * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Grab the code
+        uses: actions/checkout@v7
+      - name: Get Nix ready
+        uses: DeterminateSystems/determinate-nix-action@v3
+      - name: Check for updates and open a PR
+        id: update
+        uses: DeterminateSystems/update-flake-lock@v29
+        with:
+          commit-msg: "chore(deps): refresh flake.lock"
+          pr-title: "chore(deps): refresh flake.lock"
+      - name: Merge the PR
+        if: steps.update.outputs.pull-request-number != ''
+        run: gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ steps.update.outputs.pull-request-number }}
