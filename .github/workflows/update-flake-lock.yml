@@ -24,6 +24,12 @@ jobs:
         with:
           commit-msg: "chore(deps): update flake.lock"
           pr-title: "chore(deps): update flake.lock"
+      - name: Check both configs are valid
+        if: steps.update.outputs.pull-request-number != ''
+        run: |
+          git fetch origin update_flake_lock_action && git checkout FETCH_HEAD
+          nix eval .#nixosConfigurations.workstation.config.system.build.toplevel.drvPath
+          nix eval .#nixosConfigurations.zenbook.config.system.build.toplevel.drvPath
       - name: Merge the PR
         if: steps.update.outputs.pull-request-number != ''
         run: gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
