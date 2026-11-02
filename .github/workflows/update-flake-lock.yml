@@ -21,8 +21,8 @@ jobs:
         id: update
         uses: DeterminateSystems/update-flake-lock@v29
         with:
-          commit-msg: "chore(deps): refresh flake.lock"
-          pr-title: "chore(deps): refresh flake.lock"
+          commit-msg: "chore(deps): update flake.lock"
+          pr-title: "chore(deps): update flake.lock"
       - name: Merge the PR
         if: steps.update.outputs.pull-request-number != ''
         run: gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
