@@ -1,9 +1,18 @@
-{ inputs, config, ... }:
+{ lib, inputs, config, ... }:
 let
-  hm = config.flake.modules.homeManager;
+  hm = config.homeManager;
 in
 {
-  flake.modules.nixos.umbriel =
+  options.nixos.umbriel = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Umbriel desktop.";
+  };
+  options.homeManager.umbriel = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Home side of Umbriel: compositor config and its own Noctalia profile.";
+  };
+
+  config.nixos.umbriel =
     { lib, ... }:
     {
       imports = [ inputs.umbriel.nixosModules.default ];
@@ -25,7 +34,7 @@ in
       };
     };
 
-  flake.modules.homeManager.umbriel =
+  config.homeManager.umbriel =
     { config, pkgs, lib, osConfig, ... }:
     let
       # Noctalia under umbriel runs as its own profile: separate config and state

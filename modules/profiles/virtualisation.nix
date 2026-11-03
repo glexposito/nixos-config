@@ -1,5 +1,11 @@
+{ lib, ... }:
 {
-  flake.modules.nixos.virtualisation =
+  options.nixos.virtualisation = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "GNOME Boxes virtual machines.";
+  };
+
+  config.nixos.virtualisation =
     { pkgs, ... }:
     {
       virtualisation = {

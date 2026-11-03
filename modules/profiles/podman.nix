@@ -1,5 +1,11 @@
+{ lib, ... }:
 {
-  flake.modules.nixos.podman =
+  options.nixos.podman = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Podman container support.";
+  };
+
+  config.nixos.podman =
     { pkgs, ... }:
     {
       virtualisation = {

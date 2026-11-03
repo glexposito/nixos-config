@@ -1,5 +1,11 @@
+{ lib, ... }:
 {
-  flake.modules.nixos.k3s =
+  options.nixos.k3s = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "k3s Kubernetes cluster.";
+  };
+
+  config.nixos.k3s =
     { pkgs, lib, ... }:
     {
       services.k3s = {

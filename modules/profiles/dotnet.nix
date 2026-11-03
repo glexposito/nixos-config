@@ -1,5 +1,11 @@
+{ lib, ... }:
 {
-  flake.modules.nixos.dotnet =
+  options.nixos.dotnet = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = ".NET SDK and runtimes.";
+  };
+
+  config.nixos.dotnet =
     { pkgs, ... }:
     let
       dotnet = pkgs.dotnetCorePackages;

@@ -37,7 +37,7 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
    ```nix
    { inputs, config, ... }:
    let
-     nixos = config.flake.modules.nixos;
+     nixos = config.nixos;
    in
    {
      flake.nixosConfigurations.<host> = inputs.nixpkgs.lib.nixosSystem {
@@ -46,7 +46,7 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
          nixos.core
          nixos.guille
 
-         nixos.hyprland
+         nixos.mango
 
          { networking.hostName = "<hostname>"; }
        ];
@@ -54,7 +54,7 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
    }
    ```
 
-   Available features are defined in `modules/profiles/` (see [Features](#features)). For a full example, see `modules/hosts/workstation/default.nix`, my desktop with an AMD GPU. There's nothing to register in `flake.nix`; every file under `modules/` is picked up automatically.
+   Available features are defined in `modules/profiles/` (see [Features](#features)). For a full example, see `modules/hosts/workstation/default.nix`, my desktop with an AMD GPU. There's nothing to register in `flake.nix`; every file under `modules/` is picked up automatically. The login screen starts Mango by default (`--cmd mango` in `modules/core/greetd.nix`); with other desktops, pick one from its session list or change that line.
 
 4. Set up your users (see [Users](#users)), and set `time.timeZone` and `i18n.defaultLocale` in `modules/core/base.nix`.
 
@@ -66,14 +66,14 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
 
 ## Users
 
-Accounts are defined under `modules/users/`, each as `flake.modules.nixos.<name>`. This repo ships with my own accounts as examples; replace them with your own.
+Accounts are defined under `modules/users/`, each as `nixos.<name>`. This repo ships with my own accounts as examples; replace them with your own.
 
-- `nixos.guille` is listed by both hosts. It uses Fish, has admin access, and gets Docker access on hosts that include `nixos.docker`.
+- `nixos.guille` is part of `nixos.pc`, which both hosts list. It uses Fish, has admin access, and gets Docker access on hosts that include `nixos.docker`.
 - `nixos.sol` is listed only by the Zenbook, so it exists only there. It uses Fish with the shared shell aliases and has network management access.
 
 Every account receives the shared home configuration (`homeManager.base`, from `modules/home/`) through `home-manager.sharedModules` in `modules/core/home-manager.nix`, plus the home half of each feature the host lists. Home Manager derives each username and home directory from the corresponding NixOS account.
 
-To define your own user, create `modules/users/<name>.nix` with its `users.users.<name>` settings and `home-manager.users.<name>` configuration under `flake.modules.nixos.<name>`, then add `nixos.<name>` to the hosts that should have it. Remove or replace the example accounts you don't need.
+To define your own user, create `modules/users/<name>.nix`, declaring `options.nixos.<name>` and setting `users.users.<name>` and `home-manager.users.<name>` in `config.nixos.<name>`, like the existing users. Then add `nixos.<name>` to the hosts that should have it. Remove or replace the example accounts you don't need.
 
 After adding a new user and rebuilding the target host, set their login password. Replace `username` with the new account's name:
 
@@ -85,10 +85,10 @@ Existing passwords are retained with NixOS's default `users.mutableUsers = true`
 
 ## Structure
 
-The config follows the [dendritic pattern](https://github.com/mightyiam/dendritic) on top of [flake-parts](https://flake.parts): every `.nix` file under `modules/` is a flake-parts module, loaded automatically by [import-tree](https://github.com/denful/import-tree). Files store NixOS and Home Manager modules in `flake.modules.nixos.<name>` and `flake.modules.homeManager.<name>`, and each host picks the ones it wants. Paths containing `/_` are skipped, which is how the generated hardware files stay out.
+The config follows the [dendritic pattern](https://github.com/mightyiam/dendritic) on top of [flake-parts](https://flake.parts): every `.nix` file under `modules/` is a flake-parts module, loaded automatically by [import-tree](https://github.com/denful/import-tree). Files store NixOS and Home Manager modules in my own options, `nixos.<name>` and `homeManager.<name>`, each declared once with type `deferredModule`. Several files can add to the same one (all of `modules/core/` adds to `nixos.core`), and each host picks the ones it wants. Paths containing `/_` are skipped, which is how the generated hardware files stay out.
 
 - `flake.nix` defines the flake inputs and hands `modules/` to flake-parts.
-- `modules/flake-parts.nix` enables `flake.modules` and sets the supported systems.
+- `modules/flake-parts.nix` sets the supported systems.
 - `modules/core/` is `nixos.core`, the base every host gets: Nix settings, boot, networking, packages, services, graphics, greetd, the `monitors` option and the Home Manager setup.
 - `modules/home/` is `homeManager.base`, the user-level config every account gets (e.g. Git tooling in `git.nix`, Fish aliases in `shell.nix`).
 - `modules/users/` contains each account's NixOS settings and Git identity.
@@ -107,6 +107,8 @@ A host gets a feature by listing it; there are no `enable` options. Desktop envi
 - **Mango**: `nixos.mango` (uses [mango](https://github.com/mangowm/mango), a dwl-based Wayland compositor, with [Noctalia Shell](https://github.com/noctalia-dev/noctalia))
 - **Umbriel**: `nixos.umbriel` (uses [Umbriel](https://github.com/noctalia-dev/umbriel) with its own Noctalia profile)
 - **All of them**: `nixos.desktop`
+
+`nixos.pc` bundles what every one of my machines gets: `nixos.core`, `nixos.guille` and `nixos.desktop`.
 
 Each desktop's system and Home Manager config live together in `modules/profiles/desktop/<name>.nix`. With several listed, pick one per session from the greetd login screen.
 

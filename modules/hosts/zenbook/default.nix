@@ -1,16 +1,13 @@
 { inputs, config, ... }:
 let
-  nixos = config.flake.modules.nixos;
+  nixos = config.nixos;
 in
 {
   flake.nixosConfigurations.zenbook = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware-configuration.nix
-      nixos.core
-      nixos.guille
+      nixos.pc
       nixos.sol
-
-      nixos.desktop
 
       {
         networking.hostName = "apollo";

@@ -1,12 +1,17 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
-  nixos = config.flake.modules.nixos;
+  nixos = config.nixos;
 in
 {
+  options.nixos.desktop = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Every desktop: GNOME, Hyprland, Mango and Umbriel.";
+  };
+
   # Every desktop, so a host can list one name instead of four. The individual
   # ones (nixos.gnome, nixos.mango, ...) still exist for a host that wants
   # only some of them.
-  flake.modules.nixos.desktop = {
+  config.nixos.desktop = {
     imports = [
       nixos.gnome
       nixos.hyprland

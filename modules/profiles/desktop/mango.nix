@@ -1,9 +1,18 @@
-{ inputs, config, ... }:
+{ lib, inputs, config, ... }:
 let
-  hm = config.flake.modules.homeManager;
+  hm = config.homeManager;
 in
 {
-  flake.modules.nixos.mango =
+  options.nixos.mango = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Mango (mangowc) desktop.";
+  };
+  options.homeManager.mango = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Home side of Mango: compositor config and Noctalia.";
+  };
+
+  config.nixos.mango =
     { lib, config, pkgs, ... }:
     {
       imports = [ inputs.mango.nixosModules.mango ];
@@ -36,7 +45,7 @@ in
       services.power-profiles-daemon.enable = lib.mkDefault true;
     };
 
-  flake.modules.homeManager.mango =
+  config.homeManager.mango =
     { config, pkgs, osConfig, ... }:
     {
       imports = [

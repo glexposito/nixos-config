@@ -1,9 +1,9 @@
 { inputs, config, ... }:
 let
-  hm = config.flake.modules.homeManager;
+  hm = config.homeManager;
 in
 {
-  flake.modules.nixos.core = {
+  nixos.core = {
     imports = [ inputs.home-manager.nixosModules.home-manager ];
 
     home-manager = {

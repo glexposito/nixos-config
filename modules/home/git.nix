@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base =
+  homeManager.base =
     { ... }:
     {
       # Each account's Git identity is configured in modules/users/<name>.nix.

@@ -1,9 +1,18 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
-  hm = config.flake.modules.homeManager;
+  hm = config.homeManager;
 in
 {
-  flake.modules.nixos.gnome =
+  options.nixos.gnome = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "GNOME desktop.";
+  };
+  options.homeManager.gnome = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Home side of GNOME: extensions and keybinds.";
+  };
+
+  config.nixos.gnome =
     { pkgs, ... }:
     {
       home-manager.sharedModules = [ hm.gnome ];
@@ -16,7 +25,7 @@ in
       ];
     };
 
-  flake.modules.homeManager.gnome =
+  config.homeManager.gnome =
     { pkgs, ... }:
     {
       programs.gnome-shell = {

@@ -1,9 +1,18 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
-  hm = config.flake.modules.homeManager;
+  hm = config.homeManager;
 in
 {
-  flake.modules.nixos.gaming =
+  options.nixos.gaming = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Gaming support.";
+  };
+  options.homeManager.gaming = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Home side of gaming: RetroArch.";
+  };
+
+  config.nixos.gaming =
     { pkgs, ... }:
     {
       home-manager.sharedModules = [ hm.gaming ];
@@ -26,7 +35,7 @@ in
       };
     };
 
-  flake.modules.homeManager.gaming =
+  config.homeManager.gaming =
     { pkgs, ... }:
     let
       shaders = "${pkgs.libretro-shaders-slang}/share/libretro/shaders/shaders_slang";

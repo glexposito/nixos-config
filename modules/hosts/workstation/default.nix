@@ -1,18 +1,16 @@
 { inputs, config, ... }:
 let
-  nixos = config.flake.modules.nixos;
+  nixos = config.nixos;
 in
 {
   flake.nixosConfigurations.workstation = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware-configuration.nix
-      nixos.core
-      nixos.guille
+      nixos.pc
 
       nixos.ai
       nixos.dotnet
       nixos.gaming
-      nixos.desktop
 
       {
         networking.hostName = "mother";

@@ -1,5 +1,11 @@
+{ lib, ... }:
 {
-  flake.modules.nixos.core =
+  options.nixos.core = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Base every host gets: Nix settings, boot, networking, packages, services, graphics, greetd and Home Manager.";
+  };
+
+  config.nixos.core =
     { ... }:
     {
       time.timeZone = "Pacific/Auckland";

@@ -1,5 +1,11 @@
+{ lib, ... }:
 {
-  flake.modules.homeManager.base =
+  options.homeManager.base = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Home config every account gets: shell, terminals, editors, file managers, Git, theming.";
+  };
+
+  config.homeManager.base =
     { pkgs, ... }:
     let
       firefoxDesktop = [ "firefox.desktop" ];

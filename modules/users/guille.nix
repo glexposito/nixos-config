@@ -1,5 +1,11 @@
+{ lib, ... }:
 {
-  flake.modules.nixos.guille =
+  options.nixos.guille = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "The guille account.";
+  };
+
+  config.nixos.guille =
     { config, lib, pkgs, ... }:
     {
       users.users.guille = {

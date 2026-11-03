@@ -1,5 +1,11 @@
+{ lib, ... }:
 {
-  flake.modules.nixos.sol =
+  options.nixos.sol = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "The sol account.";
+  };
+
+  config.nixos.sol =
     { pkgs, ... }:
     {
       users.users.sol = {

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.core =
+  nixos.core =
     { lib, ... }:
     {
       # Set per host; the hyprland, mango and umbriel home configs render it into each

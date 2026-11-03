@@ -1,9 +1,18 @@
-{ inputs, config, ... }:
+{ lib, inputs, config, ... }:
 let
-  hm = config.flake.modules.homeManager;
+  hm = config.homeManager;
 in
 {
-  flake.modules.nixos.hyprland =
+  options.nixos.hyprland = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Hyprland desktop.";
+  };
+  options.homeManager.hyprland = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "Home side of Hyprland: Caelestia Shell and dots.";
+  };
+
+  config.nixos.hyprland =
     { lib, ... }:
     {
       home-manager.sharedModules = [ hm.hyprland ];
@@ -23,7 +32,7 @@ in
       programs.gpu-screen-recorder.enable = true;
     };
 
-  flake.modules.homeManager.hyprland =
+  config.homeManager.hyprland =
     { lib, osConfig, ... }:
     {
       imports = [

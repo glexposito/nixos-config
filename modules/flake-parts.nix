@@ -1,7 +1,5 @@
-{ inputs, ... }:
 {
-  # Adds the flake.modules.<class>.<name> option every other file writes into.
-  imports = [ inputs.flake-parts.flakeModules.modules ];
-
+  # NixOS and Home Manager modules are stored in our own options, nixos.<name>
+  # and homeManager.<name>, each declared next to the file that defines it.
   systems = [ "x86_64-linux" ];
 }

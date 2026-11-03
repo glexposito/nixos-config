@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.core =
+  nixos.core =
     { pkgs, ... }:
     {
       programs.appimage = {

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base =
+  homeManager.base =
     { pkgs, ... }:
     {
       programs.zed-editor = {
