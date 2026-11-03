@@ -12,6 +12,7 @@
     gnome.enable = true;
     hyprland.enable = true;
     mango.enable = true;
+    umbriel.enable = true;
   };
 
   networking.hostName = "mother";

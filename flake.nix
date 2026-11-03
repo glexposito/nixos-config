@@ -32,6 +32,9 @@
       url = "github:mangowm/mango/0.18.4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # No nixpkgs follows: it would miss umbriel.cachix.org. The cachix branch
+    # only tracks commits whose binaries are already in that cache.
+    umbriel.url = "github:noctalia-dev/umbriel/cachix";
   };
 
   outputs =

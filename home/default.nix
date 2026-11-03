@@ -14,6 +14,7 @@ in
     ./gnome.nix
     ./hyprland.nix
     ./mango.nix
+    ./umbriel.nix
     ./gaming.nix
   ];
 
