@@ -1,16 +1,14 @@
-{ pkgs, lib, config, ... }:
-
 {
-  options.profiles.virtualisation.enable = lib.mkEnableOption "GNOME Boxes virtual machines";
+  flake.modules.nixos.virtualisation =
+    { pkgs, ... }:
+    {
+      virtualisation = {
+        libvirtd.enable = true;
+        spiceUSBRedirection.enable = true;
+      };
 
-  config = lib.mkIf config.profiles.virtualisation.enable {
-    virtualisation = {
-      libvirtd.enable = true;
-      spiceUSBRedirection.enable = true;
+      environment.systemPackages = with pkgs; [
+        gnome-boxes
+      ];
     };
-
-    environment.systemPackages = with pkgs; [
-      gnome-boxes
-    ];
-  };
 }

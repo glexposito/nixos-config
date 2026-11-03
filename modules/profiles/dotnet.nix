@@ -1,19 +1,17 @@
-{ pkgs, lib, config, ... }:
-
-let
-  dotnet = pkgs.dotnetCorePackages;
-in
 {
-  options.profiles.dotnet.enable = lib.mkEnableOption ".NET SDK and runtimes";
+  flake.modules.nixos.dotnet =
+    { pkgs, ... }:
+    let
+      dotnet = pkgs.dotnetCorePackages;
+    in
+    {
+      environment.systemPackages = with pkgs; [
+        jetbrains.rider
 
-  config = lib.mkIf config.profiles.dotnet.enable {
-    environment.systemPackages = with pkgs; [
-      jetbrains.rider
-
-      (dotnet.combinePackages [
-        dotnet.sdk_8_0
-        dotnet.sdk_10_0
-      ])
-    ];
-  };
+        (dotnet.combinePackages [
+          dotnet.sdk_8_0
+          dotnet.sdk_10_0
+        ])
+      ];
+    };
 }

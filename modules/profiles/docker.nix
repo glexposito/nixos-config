@@ -1,14 +1,12 @@
-{ pkgs, lib, config, ... }:
-
 {
-  options.profiles.docker.enable = lib.mkEnableOption "Docker container support";
+  flake.modules.nixos.docker =
+    { pkgs, ... }:
+    {
+      virtualisation.docker.enable = true;
 
-  config = lib.mkIf config.profiles.docker.enable {
-    virtualisation.docker.enable = true;
-
-    environment.systemPackages = with pkgs; [
-      docker-compose
-      lazydocker
-    ];
-  };
+      environment.systemPackages = with pkgs; [
+        docker-compose
+        lazydocker
+      ];
+    };
 }

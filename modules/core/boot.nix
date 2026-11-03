@@ -1,20 +1,22 @@
-{ pkgs, lib, ... }:
-
 {
-  boot.loader.systemd-boot.enable = false;
+  flake.modules.nixos.core =
+    { pkgs, lib, ... }:
+    {
+      boot.loader.systemd-boot.enable = false;
 
-  boot.loader.efi.canTouchEfiVariables = true;
+      boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.loader.limine = {
-    enable = true;
-    efiSupport = true;
-    maxGenerations = 10;
-  };
+      boot.loader.limine = {
+        enable = true;
+        efiSupport = true;
+        maxGenerations = 10;
+      };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+      boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.kernel.sysctl = {
-    "vm.swappiness" = lib.mkDefault 100;
-    "vm.vfs_cache_pressure" = 50;
-  };
+      boot.kernel.sysctl = {
+        "vm.swappiness" = lib.mkDefault 100;
+        "vm.vfs_cache_pressure" = 50;
+      };
+    };
 }

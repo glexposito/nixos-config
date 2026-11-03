@@ -1,13 +1,15 @@
-{ ... }:
-
 {
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  flake.modules.nixos.core =
+    { ... }:
+    {
+      hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
 
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    MESA_VK_IGNORE_CONFORMANCE_WARNING = "1";
-  };
+      environment.sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+        MESA_VK_IGNORE_CONFORMANCE_WARNING = "1";
+      };
+    };
 }
