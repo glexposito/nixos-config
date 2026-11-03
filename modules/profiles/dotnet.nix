@@ -1,19 +1,23 @@
-{ pkgs, lib, config, ... }:
-
-let
-  dotnet = pkgs.dotnetCorePackages;
-in
+{ lib, ... }:
 {
-  options.profiles.dotnet.enable = lib.mkEnableOption ".NET SDK and runtimes";
-
-  config = lib.mkIf config.profiles.dotnet.enable {
-    environment.systemPackages = with pkgs; [
-      jetbrains.rider
-
-      (dotnet.combinePackages [
-        dotnet.sdk_8_0
-        dotnet.sdk_10_0
-      ])
-    ];
+  options.nixos.dotnet = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = ".NET SDK and runtimes.";
   };
+
+  config.nixos.dotnet =
+    { pkgs, ... }:
+    let
+      dotnet = pkgs.dotnetCorePackages;
+    in
+    {
+      environment.systemPackages = with pkgs; [
+        jetbrains.rider
+
+        (dotnet.combinePackages [
+          dotnet.sdk_8_0
+          dotnet.sdk_10_0
+        ])
+      ];
+    };
 }

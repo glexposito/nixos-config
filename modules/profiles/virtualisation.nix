@@ -1,16 +1,20 @@
-{ pkgs, lib, config, ... }:
-
+{ lib, ... }:
 {
-  options.profiles.virtualisation.enable = lib.mkEnableOption "GNOME Boxes virtual machines";
-
-  config = lib.mkIf config.profiles.virtualisation.enable {
-    virtualisation = {
-      libvirtd.enable = true;
-      spiceUSBRedirection.enable = true;
-    };
-
-    environment.systemPackages = with pkgs; [
-      gnome-boxes
-    ];
+  options.nixos.virtualisation = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "GNOME Boxes virtual machines.";
   };
+
+  config.nixos.virtualisation =
+    { pkgs, ... }:
+    {
+      virtualisation = {
+        libvirtd.enable = true;
+        spiceUSBRedirection.enable = true;
+      };
+
+      environment.systemPackages = with pkgs; [
+        gnome-boxes
+      ];
+    };
 }

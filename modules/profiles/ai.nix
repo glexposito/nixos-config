@@ -1,11 +1,15 @@
-{ pkgs, lib, config, ... }:
-
+{ lib, ... }:
 {
-  options.profiles.ai.enable = lib.mkEnableOption "AI tools";
-
-  config = lib.mkIf config.profiles.ai.enable {
-    environment.systemPackages = with pkgs; [
-      llama-cpp-vulkan
-    ];
+  options.nixos.ai = lib.mkOption {
+    type = lib.types.deferredModule;
+    description = "AI tools.";
   };
+
+  config.nixos.ai =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = with pkgs; [
+        llama-cpp-vulkan
+      ];
+    };
 }

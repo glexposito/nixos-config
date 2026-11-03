@@ -3,6 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    # Imports every .nix file under ./modules (paths containing /_ are skipped).
+    import-tree.url = "github:denful/import-tree";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,37 +44,6 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
-    let
-      homeManagerModule = {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "bak";
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.sharedModules = [ ./home ];
-      };
-    in
-    {
-      nixosConfigurations.zenbook = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/zenbook
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          homeManagerModule
-        ];
-      };
-
-      nixosConfigurations.workstation = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/workstation
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          homeManagerModule
-        ];
-      };
-    };
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
