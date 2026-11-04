@@ -120,6 +120,8 @@ in
           general.autostart = [
             "NOCTALIA_CONFIG_HOME=${noctaliaConfigHome} NOCTALIA_STATE_HOME=${noctaliaStateHome} noctalia"
           ];
+          # Don't open the keybind cheatsheet on every start.
+          general.show_cheatsheet = false;
 
           # Without this umbriel picks each monitor's preferred mode (60Hz).
           output = lib.listToAttrs (
