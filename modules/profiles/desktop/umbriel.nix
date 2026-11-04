@@ -173,6 +173,9 @@ in
             "Mod+Shift+S" = "spawn noctalia msg settings-toggle";
             # Cycle scrolling -> dwindle -> master -> stacking on this workspace.
             "Mod+Shift+L" = "workspace-set-layout toggle";
+            # Unstack: split the focused window out of its column (stacks it if alone).
+            "Mod+BracketLeft" = "window-consume-or-expel-left";
+            "Mod+BracketRight" = "window-consume-or-expel-right";
             # Noctalia's window switcher, as its umbriel page recommends.
             "Alt+Tab" = "spawn noctalia msg window-switcher hold";
             "Alt+Shift+Tab" = "spawn noctalia msg window-switcher hold reverse";
