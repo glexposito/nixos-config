@@ -173,6 +173,9 @@ in
             "Mod+Shift+S" = "spawn noctalia msg settings-toggle";
             # Cycle scrolling -> dwindle -> master -> stacking on this workspace.
             "Mod+Shift+L" = "workspace-set-layout toggle";
+            # Workspaces stack vertically, so Up/Down walks them.
+            "Mod+Ctrl+Up" = "workspace-previous";
+            "Mod+Ctrl+Down" = "workspace-next";
             # Unstack: split the focused window out of its column (stacks it if alone).
             "Mod+BracketLeft" = "window-consume-or-expel-left";
             "Mod+BracketRight" = "window-consume-or-expel-right";
