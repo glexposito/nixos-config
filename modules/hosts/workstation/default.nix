@@ -9,7 +9,6 @@ in
       nixos.pc
 
       nixos.ai
-      nixos.dotnet
       nixos.gaming
 
       {
