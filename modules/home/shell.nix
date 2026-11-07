@@ -37,15 +37,5 @@
         enable = true;
         presets = [ "pure-preset" ];
       };
-
-      programs.mise = {
-        enable = true;
-        enableFishIntegration = true;
-        globalConfig.tools = {
-          terraform = "latest";
-          terragrunt = "latest";
-          azure-cli = "latest";
-        };
-      };
     };
 }
