@@ -44,6 +44,7 @@ Every key maps to the `llama-server` CLI flag of the same name (`llama-server --
 | Param | Meaning |
 |---|---|
 | `hf-repo` | Hugging Face model reference (`<org>/<repo>:<quant>`). See [Models](#models). |
+| `hf-file` | Exact file to download from `hf-repo`, overriding its `:<quant>` tag. Needed when the quant tag is ambiguous, e.g. `:Q2_0` in a repo that also has `PQ2_0` would resolve to the wrong file. |
 | `no-mmproj` | Skip downloading/loading the multimodal projector (vision support) that `hf-repo` otherwise fetches automatically when the repo has one. Saves VRAM for text-only use. |
 | `device` | Backend device to offload to. `Vulkan0` is the first GPU on the Vulkan backend (used here instead of CUDA/ROCm for cross-vendor GPU support). |
 | `n-gpu-layers` | Number of transformer layers to offload to the GPU. `auto` lets llama-server decide; a value larger than any model's layer count (e.g. `999`) means "offload everything". |
@@ -52,6 +53,7 @@ Every key maps to the `llama-server` CLI flag of the same name (`llama-server --
 | `ctx-size` | Context window in tokens — the max combined length of prompt + generated output. Bigger contexts cost more VRAM for the KV cache. |
 | `batch-size` / `ubatch-size` | Logical and physical max batch sizes for prompt processing. Lowering them reduces peak VRAM usage at the cost of slower prompt ingestion. |
 | `reasoning` | Enables the model's reasoning/thinking-mode output formatting, if its chat template supports it. |
+| `reasoning-effort` | Reasoning effort level passed to the chat template (e.g. `minimal`, `low`, `medium`, `high`, `xhigh`; `default` keeps the template's own). Only has an effect if the template reads it; supported levels vary per model, so check the model card. |
 | `cache-type-k` / `cache-type-v` | Quantization applied to the K/V attention cache (e.g. `q8_0` instead of full-precision `f16`). Shrinks KV-cache VRAM usage — what makes long `ctx-size` values affordable — at a small quality cost. |
 | `parallel` | Number of concurrent request "slots" the server reserves context for. `1` means one request at a time (no context splitting between parallel chats). |
 | `jinja` | Enables Jinja2 chat-template rendering (vs. a hardcoded template). Required for modern models whose chat template does tool-calling / thinking-block formatting. |
