@@ -139,7 +139,7 @@ in
           );
 
           # Focus the window under the pointer, like mango does by default.
-          input.focus.follows_mouse = true;
+          input.focus.follows_mouse = "sloppy";
           # Warp the cursor to the centre of a keyboard-focused window, like
           # mango's warp_cursor and hyprland's default.
           input.cursor.follows_focus = true;
