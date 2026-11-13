@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794293748,
-        "narHash": "sha256-LKMXq2u922pfB8vy7lwytd0vf0jMaLBrEAfAXMPQn8o=",
+        "lastModified": 1794466186,
+        "narHash": "sha256-a0Xo2m9dl4q+Zq6sce7kBdrWGmGa+xY8mW31pci3T2A=",
         "owner": "caelestia-dots",
         "repo": "cli",
-        "rev": "cd85cd7b543bee784eaaf0bfb9ae2bd39d136ffb",
+        "rev": "8741220a304924c31c6eb320449e533679ef1f98",
         "type": "github"
       },
       "original": {
@@ -209,11 +209,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1794042290,
-        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
+        "lastModified": 1794386569,
+        "narHash": "sha256-x9sADJvoVG0L6RejZB+/BB4YiGZFBZrfTlhF4uBq1tQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
+        "rev": "d4f25a3e562008648d45bcf2d70bcc7422cad84e",
         "type": "github"
       },
       "original": {
@@ -329,11 +329,11 @@
         "xdg-desktop-portal-umbriel": "xdg-desktop-portal-umbriel"
       },
       "locked": {
-        "lastModified": 1794367699,
-        "narHash": "sha256-XLnvJPLIwdGnfOGOSY4F7JZc0VdSg43O+V9pTqfTBg0=",
+        "lastModified": 1794522058,
+        "narHash": "sha256-aPMMJNsuYrBU3q9HHbJmnuew6Fpr4xm7WlZbBaGeXmE=",
         "owner": "noctalia-dev",
         "repo": "umbriel",
-        "rev": "49b29701a82526e92711abd63109f245638215fa",
+        "rev": "88ba829c6152ee55cd2ffa9d80e7f9dee543605b",
         "type": "github"
       },
       "original": {
