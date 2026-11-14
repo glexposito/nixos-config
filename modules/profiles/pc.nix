@@ -5,16 +5,15 @@ in
 {
   options.nixos.pc = lib.mkOption {
     type = lib.types.deferredModule;
-    description = "What every one of my machines gets: the base, my account and every desktop.";
+    description = "What every one of my machines gets: the base and my account.";
   };
 
-  # A host without desktops (e.g. a server) can still list nixos.core and
-  # nixos.guille on their own.
+  # No desktop here: each host picks its own (nixos.desktop-all,
+  # nixos.desktop-noctalia, ...).
   config.nixos.pc = {
     imports = [
       nixos.core
       nixos.guille
-      nixos.desktop
     ];
   };
 }

@@ -107,9 +107,10 @@ A host gets a feature by listing it; there are no `enable` options. Desktop envi
 - **Hyprland**: `nixos.hyprland` (uses [Caelestia Shell](https://github.com/caelestia-dots/shell) with Lua config from [caelestia-dots](https://github.com/caelestia-dots/caelestia))
 - **Mango**: `nixos.mango` (uses [mango](https://github.com/mangowm/mango), a dwl-based Wayland compositor, with [Noctalia Shell](https://github.com/noctalia-dev/noctalia))
 - **Umbriel**: `nixos.umbriel` (uses [Umbriel](https://github.com/noctalia-dev/umbriel) with its own Noctalia profile)
-- **All of them**: `nixos.desktop`
+- **Noctalia ones (Mango, Umbriel)**: `nixos.desktop-noctalia`
+- **All of them**: `nixos.desktop-all`
 
-`nixos.pc` bundles what every one of my machines gets: `nixos.core`, `nixos.guille` and `nixos.desktop`.
+`nixos.pc` bundles what every one of my machines gets: `nixos.core` and `nixos.guille`. Each host adds its own desktops on top: the workstation lists `nixos.desktop-all`, the zenbook `nixos.desktop-noctalia`.
 
 Each desktop's system and Home Manager config live together in `modules/features/desktop/<name>.nix`. With several listed, pick one per session from the greetd login screen.
 

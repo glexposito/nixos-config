@@ -7,6 +7,7 @@ in
     modules = [
       ./_hardware-configuration.nix
       nixos.pc
+      nixos.desktop-all
 
       nixos.ai
       nixos.gaming
