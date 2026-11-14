@@ -11,7 +11,7 @@ in
       useUserPackages = true;
       backupFileExtension = "bak";
       # Every account gets the base home config; each feature adds its own
-      # home half next to it (see e.g. modules/profiles/desktop/umbriel.nix).
+      # home half next to it (see e.g. modules/features/desktop/umbriel.nix).
       sharedModules = [ hm.base ];
     };
   };

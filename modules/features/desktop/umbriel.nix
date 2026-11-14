@@ -39,7 +39,7 @@ in
     let
       # Noctalia under umbriel runs as its own profile: separate config and state
       # roots (NOCTALIA_CONFIG_HOME reads $root/noctalia/), so nothing is shared
-      # with mango's noctalia (modules/profiles/desktop/mango.nix) and mango's plugins don't leak in.
+      # with mango's noctalia (modules/features/desktop/mango.nix) and mango's plugins don't leak in.
       noctaliaConfigHome = "${config.xdg.configHome}/noctalia-umbriel";
       noctaliaStateHome = "${config.xdg.stateHome}/noctalia-umbriel";
 

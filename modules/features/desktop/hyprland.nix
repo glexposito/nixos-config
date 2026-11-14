@@ -72,7 +72,7 @@ in
       wayland.windowManager.hyprland = {
         enable = true;
         configType = "lua";
-        # Both come from programs.hyprland in modules/profiles/desktop/hyprland.nix.
+        # Both come from programs.hyprland in modules/features/desktop/hyprland.nix.
         package = null;
         portalPackage = null;
         # systemd.enable (default true) creates hyprland-session.target, bound to

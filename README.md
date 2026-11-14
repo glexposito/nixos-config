@@ -54,7 +54,7 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
    }
    ```
 
-   Available features are defined in `modules/profiles/` (see [Features](#features)). For a full example, see `modules/hosts/workstation/default.nix`, my desktop with an AMD GPU. There's nothing to register in `flake.nix`; every file under `modules/` is picked up automatically. The login screen starts Mango by default (`--cmd mango` in `modules/core/greetd.nix`); with other desktops, pick one from its session list or change that line.
+   Available features are defined in `modules/features/` (see [Features](#features)). For a full example, see `modules/hosts/workstation/default.nix`, my desktop with an AMD GPU. There's nothing to register in `flake.nix`; every file under `modules/` is picked up automatically. The login screen starts Mango by default (`--cmd mango` in `modules/core/greetd.nix`); with other desktops, pick one from its session list or change that line.
 
 4. Set up your users (see [Users](#users)), and set `time.timeZone` and `i18n.defaultLocale` in `modules/core/base.nix`.
 
@@ -92,11 +92,12 @@ The config follows the [dendritic pattern](https://github.com/mightyiam/dendriti
 - `modules/core/` is `nixos.core`, the base every host gets: Nix settings, boot, networking, packages, services, graphics, greetd, the `monitors` option and the Home Manager setup.
 - `modules/home/` is `homeManager.base`, the user-level config every account gets (e.g. Git tooling in `git.nix`, Fish aliases in `shell.nix`).
 - `modules/users/` contains each account's NixOS settings and Git identity.
-- `modules/profiles/` contains opt-in features. Features with user-level config keep both halves in one file.
+- `modules/features/` contains opt-in features, one concern per file. Features with user-level config keep both halves in one file.
+- `modules/profiles/` contains bundles that compose modules across areas, like `nixos.pc`.
 - `modules/hosts/` contains per-machine configuration, including generated hardware files. Mine are `workstation` (`mother`, desktop with AMD GPU) and `zenbook` (`apollo`, ASUS Zenbook laptop).
 - `utils/` contains personal scripts and reference configs for things not covered by the declarative system configuration (e.g. llama.cpp model presets).
 
-Host files should stay small: a list of features plus machine-specific settings. Shared behavior belongs in `modules/core/`, `modules/home/`, or a feature under `modules/profiles/`.
+Host files should stay small: a list of features plus machine-specific settings. Shared behavior belongs in `modules/core/`, `modules/home/`, or a feature under `modules/features/`.
 
 ## Features
 
@@ -110,6 +111,6 @@ A host gets a feature by listing it; there are no `enable` options. Desktop envi
 
 `nixos.pc` bundles what every one of my machines gets: `nixos.core`, `nixos.guille` and `nixos.desktop`.
 
-Each desktop's system and Home Manager config live together in `modules/profiles/desktop/<name>.nix`. With several listed, pick one per session from the greetd login screen.
+Each desktop's system and Home Manager config live together in `modules/features/desktop/<name>.nix`. With several listed, pick one per session from the greetd login screen.
 
-Other features (`nixos.ai`, `nixos.dotnet`, `nixos.gaming`, `nixos.docker`, `nixos.podman`, `nixos.k3s`, `nixos.virtualisation`) work the same way. See `modules/profiles/` for what each one installs.
+Other features (`nixos.ai`, `nixos.dotnet`, `nixos.gaming`, `nixos.docker`, `nixos.podman`, `nixos.k3s`, `nixos.virtualisation`) work the same way. See `modules/features/` for what each one installs.
