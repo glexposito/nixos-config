@@ -17,6 +17,7 @@
         (dotnet.combinePackages [
           dotnet.sdk_8_0
           dotnet.sdk_10_0
+          dotnet.sdk_11_0
         ])
       ];
     };
