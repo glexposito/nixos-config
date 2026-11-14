@@ -35,7 +35,7 @@
       flake = false;
     };
     mango = {
-      url = "github:mangowm/mango/0.18.4";
+      url = "github:mangowm/mango/0.18.5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # No nixpkgs follows: it would miss umbriel.cachix.org. The cachix branch
@@ -43,7 +43,5 @@
     umbriel.url = "github:noctalia-dev/umbriel/cachix";
   };
 
-  outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
