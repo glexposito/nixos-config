@@ -12,6 +12,10 @@ NixOS configuration for my machines.
 
 ![Mango with Noctalia Shell](assets/mango.png)
 
+### Umbriel + Noctalia
+
+![Umbriel with Noctalia Shell](assets/umbriel.png)
+
 ## Usage
 
 The hosts and users in this repo are mine. To use it on your machine, add your own.
