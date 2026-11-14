@@ -88,7 +88,7 @@ Existing passwords are retained with NixOS's default `users.mutableUsers = true`
 The config follows the [dendritic pattern](https://github.com/mightyiam/dendritic) on top of [flake-parts](https://flake.parts): every `.nix` file under `modules/` is a flake-parts module, loaded automatically by [import-tree](https://github.com/denful/import-tree). Files store NixOS and Home Manager modules in my own options, `nixos.<name>` and `homeManager.<name>`, each declared once with type `deferredModule`. Several files can add to the same one (all of `modules/core/` adds to `nixos.core`), and each host picks the ones it wants. Paths containing `/_` are skipped, which is how the generated hardware files stay out.
 
 - `flake.nix` defines the flake inputs and hands `modules/` to flake-parts.
-- `modules/flake-parts.nix` sets the supported systems.
+- Both NixOS hosts explicitly target `x86_64-linux` in their host modules.
 - `modules/core/` is `nixos.core`, the base every host gets: Nix settings, boot, networking, packages, services, graphics, greetd, the `monitors` option and the Home Manager setup.
 - `modules/home/` is `homeManager.base`, the user-level config every account gets (e.g. Git tooling in `git.nix`, Fish aliases in `shell.nix`).
 - `modules/users/` contains each account's NixOS settings and Git identity.

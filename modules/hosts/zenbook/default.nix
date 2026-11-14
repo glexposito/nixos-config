@@ -4,6 +4,7 @@ let
 in
 {
   flake.nixosConfigurations.zenbook = inputs.nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
     modules = [
       ./_hardware-configuration.nix
       nixos.pc

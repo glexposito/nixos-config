@@ -9,7 +9,7 @@
             user = "greeter";
             command = lib.concatStringsSep " " [
               (lib.getExe' pkgs.tuigreet "tuigreet")
-              "--cmd mango"
+              "--cmd umbriel"
               "--time"
               "--remember" "--remember-session"
               "--asterisks"
