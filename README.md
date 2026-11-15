@@ -37,7 +37,9 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
 
    The leading `_` keeps it out of the automatic import (see [Structure](#structure)).
 
-3. Create `modules/hosts/<host>/default.nix`. List the features you want and set your machine's hostname:
+3. Create your user as `modules/users/<user>.nix`, following [Users](#users). Replace `<user>` with your account name, here and in the next steps.
+
+4. Create `modules/hosts/<host>/default.nix`. List the features you want, your user and your machine's hostname:
 
    ```nix
    { inputs, config, ... }:
@@ -50,9 +52,9 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
        modules = [
          ./_hardware-configuration.nix
          nixos.core
-         nixos.guille
+         nixos.<user>         # your account from step 3
 
-         nixos.mango
+         nixos.desktop-all    # installs GNOME, Hyprland, Mango and Umbriel; pick one at login
 
          { networking.hostName = "<hostname>"; }
        ];
@@ -62,15 +64,15 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
 
    Available features are defined in `modules/features/` (see [Features](#features)). For a full example, see `modules/hosts/workstation/default.nix`, my desktop with an AMD GPU. There's nothing to register in `flake.nix`; every file under `modules/` is picked up automatically. The login screen starts Umbriel by default (`--cmd umbriel` in `modules/core/greetd.nix`); with other desktops, pick one from its session list or change that line.
 
-4. Set up your users (see [Users](#users)). In `modules/core/base.nix`, set `time.timeZone` and `i18n.defaultLocale`, and set `system.stateVersion` to the value in your machine's `/etc/nixos/configuration.nix`.
+5. In `modules/core/base.nix`, set `time.timeZone` and `i18n.defaultLocale`, and set `system.stateVersion` to the value in your machine's `/etc/nixos/configuration.nix`.
 
-5. `git add` the new files (flakes ignore untracked files), then rebuild:
+6. `git add` the new files (flakes ignore untracked files), then rebuild:
 
    ```bash
    sudo nixos-rebuild switch --flake .#<host>
    ```
 
-6. Before rebooting, set a password for each new account (`sudo passwd <name>`), otherwise you can't log in.
+7. Before rebooting, set a password for your account (`sudo passwd <user>`), otherwise you can't log in.
 
 ## Users
 
