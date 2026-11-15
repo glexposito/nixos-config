@@ -18,11 +18,12 @@ NixOS configuration for my machines.
 
 ## Usage
 
-The hosts and users in this repo are mine. To use it on your machine, add your own.
+The hosts and users in this repo are mine. To use it on your machine, add your own. It assumes an x86_64 machine booting in UEFI mode, as `modules/core/boot.nix` installs the Limine bootloader with EFI support.
 
-1. Clone the repo:
+1. Clone the repo. A fresh NixOS install has no Git, so get a shell with it first:
 
    ```bash
+   nix-shell -p git
    git clone https://github.com/glexposito/nixos-config.git
    cd nixos-config
    ```
@@ -45,6 +46,7 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
    in
    {
      flake.nixosConfigurations.<host> = inputs.nixpkgs.lib.nixosSystem {
+       system = "x86_64-linux";
        modules = [
          ./_hardware-configuration.nix
          nixos.core
@@ -58,9 +60,9 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
    }
    ```
 
-   Available features are defined in `modules/features/` (see [Features](#features)). For a full example, see `modules/hosts/workstation/default.nix`, my desktop with an AMD GPU. There's nothing to register in `flake.nix`; every file under `modules/` is picked up automatically. The login screen starts Mango by default (`--cmd mango` in `modules/core/greetd.nix`); with other desktops, pick one from its session list or change that line.
+   Available features are defined in `modules/features/` (see [Features](#features)). For a full example, see `modules/hosts/workstation/default.nix`, my desktop with an AMD GPU. There's nothing to register in `flake.nix`; every file under `modules/` is picked up automatically. The login screen starts Umbriel by default (`--cmd umbriel` in `modules/core/greetd.nix`); with other desktops, pick one from its session list or change that line.
 
-4. Set up your users (see [Users](#users)), and set `time.timeZone` and `i18n.defaultLocale` in `modules/core/base.nix`.
+4. Set up your users (see [Users](#users)). In `modules/core/base.nix`, set `time.timeZone` and `i18n.defaultLocale`, and set `system.stateVersion` to the value in your machine's `/etc/nixos/configuration.nix`.
 
 5. `git add` the new files (flakes ignore untracked files), then rebuild:
 
@@ -68,11 +70,13 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
    sudo nixos-rebuild switch --flake .#<host>
    ```
 
+6. Before rebooting, set a password for each new account (`sudo passwd <name>`), otherwise you can't log in.
+
 ## Users
 
 Accounts are defined under `modules/users/`, each as `nixos.<name>`. This repo ships with my own accounts as examples; replace them with your own.
 
-- `nixos.guille` is part of `nixos.pc`, which both hosts list. It uses Fish, has admin access, and gets Docker access on hosts that include `nixos.docker`.
+- `nixos.guille` is part of `nixos.pc`, which both hosts list. It uses Fish, has admin access, and gets Docker and GameMode access on hosts that include `nixos.docker` or `nixos.gaming`.
 - `nixos.sol` is listed only by the Zenbook, so it exists only there. It uses Fish with the shared shell aliases and has network management access.
 
 Every account receives the shared home configuration (`homeManager.base`, from `modules/home/`) through `home-manager.sharedModules` in `modules/core/home-manager.nix`, plus the home half of each feature the host lists. Home Manager derives each username and home directory from the corresponding NixOS account.
