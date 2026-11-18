@@ -35,7 +35,7 @@
       flake = false;
     };
     mango = {
-      url = "github:mangowm/mango/0.18.5";
+      url = "github:mangowm/mango/0.18.6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # No nixpkgs follows: it would miss umbriel.cachix.org. The cachix branch
