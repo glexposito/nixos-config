@@ -12,6 +12,7 @@ in
 
       nixos.ai
       nixos.gaming
+      nixos.podman
 
       {
         networking.hostName = "mother";

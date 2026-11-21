@@ -9,7 +9,15 @@
     { pkgs, ... }:
     {
       virtualisation = {
-        containers.enable = true;
+        containers = {
+          enable = true;
+          registries.settings.unqualified-search-registries = [ "docker.io" ];
+          # podman-tui only connects through podman's connection list
+          containersConf.settings.engine = {
+            active_service = "local";
+            service_destinations.local.uri = "unix:///run/user/1000/podman/podman.sock";
+          };
+        };
         podman = {
           enable = true;
           dockerCompat = true;
@@ -26,7 +34,7 @@
       '';
 
       environment.systemPackages = with pkgs; [
-        podman-compose
+        docker-compose
         podman-desktop
         podman-tui
         lazydocker
