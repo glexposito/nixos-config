@@ -64,7 +64,8 @@ The hosts and users in this repo are mine. To use it on your machine, add your o
 
    Available features are defined in `modules/features/` (see [Features](#features)). For a full example, see `modules/hosts/workstation/default.nix`, my desktop with an AMD GPU. There's nothing to register in `flake.nix`; every file under `modules/` is picked up automatically. The login screen starts Umbriel by default (`--cmd umbriel` in `modules/core/greetd.nix`); with other desktops, pick one from its session list or change that line.
 
-5. In `modules/core/base.nix`, set `time.timeZone` and `i18n.defaultLocale`, and set `system.stateVersion` to the value in your machine's `/etc/nixos/configuration.nix`.
+5. In `modules/core/base.nix`, set `time.timeZone` and `i18n.defaultLocale`.
+   Then set the state version in two places: `system.stateVersion` in `modules/core/base.nix` and `home.stateVersion` in `modules/home/base.nix`. Use the `system.stateVersion` value from your machine's `/etc/nixos/configuration.nix` (e.g. `"26.05"`) for both. It's the release you installed with, so leave it alone when you upgrade later.
 
 6. `git add` the new files (flakes ignore untracked files), then rebuild:
 
