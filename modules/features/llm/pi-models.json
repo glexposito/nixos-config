@@ -9,18 +9,14 @@
         { "id": "ornith-1.5-9b", "contextWindow": 262144 },
         { "id": "qwen3.8-27b", "contextWindow": 131072 },
         { "id": "ornith-1.5-35b-a3b", "contextWindow": 131072 },
-        { "id": "lfm2.5-24b-a2b", "contextWindow": 131072 },
-        { "id": "bonsai2-27b", "contextWindow": 131072 },
-        { "id": "spark-x2.6-4b", "contextWindow": 262144 }
+        { "id": "bonsai2-27b", "contextWindow": 131072 }
       ]
     },
     "strata": {
       "baseUrl": "http://127.0.0.1:47831/v1",
       "api": "openai-completions",
       "apiKey": "none",
-      "models": [
-        { "id": "iq3_s", "contextWindow": 131072 }
-      ]
+      "models": [{ "id": "iq3_s", "contextWindow": 131072 }]
     }
   }
 }
