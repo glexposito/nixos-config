@@ -21,11 +21,11 @@ To try a model before adding it, run it directly with the same reference:
 llama-server -hf <org>/<repo>:<quant>
 ```
 
-To add it permanently, add a `[section]` to `models.ini` with that `hf-repo` and any per-model overrides, then register it in `pi/models.json` (see below).
+To add it permanently, add a `[section]` to `models.ini` with that `hf-repo` and any per-model overrides, then register it in `pi-models.json` (see below).
 
-## llama.cpp/models.ini
+## models.ini
 
-A "models preset" file for llama-server's router mode: each `[section]` is a model the server can serve, and the section name is the model ID clients request. Copy to `~/.config/llama.cpp/models.ini` to use; the `llama-serve` shell alias (`home/shell.nix`) starts `llama-server` with `--models-preset` pointing at this path.
+A "models preset" file for llama-server's router mode: each `[section]` is a model the server can serve, and the section name is the model ID clients request. Linked to `~/.config/llama.cpp/models.ini` (see [Linking](#linking)); the `llama-serve` shell alias (`home/shell.nix`) starts `llama-server` with `--models-preset` pointing at this path.
 
 Models are loaded on demand when a request names them (`--models-autoload`, enabled by default). `--models-max` caps how many stay loaded at once; the `llama-serve` alias sets it to `1`, so requesting a different model unloads the current one first.
 
@@ -78,9 +78,9 @@ Every key maps to the `llama-server` CLI flag of the same name (`llama-server --
 | `repeat-penalty` | Penalizes tokens already seen recently to discourage repetition/loops. `1.0` = no penalty. |
 | `presence-penalty` | Flat penalty applied to any token that has appeared at all so far in the output, regardless of how often — discourages reusing the same vocabulary. `0.0` = no penalty. |
 
-## pi/models.json
+## pi-models.json
 
-Registers the llama-server endpoint and its models as an OpenAI-compatible provider for Pi. Copy to `~/.pi/agent/models.json` to use.
+Registers the llama-server endpoint and its models as an OpenAI-compatible provider for Pi. Linked to `~/.pi/agent/models.json` (see [Linking](#linking)).
 
 | Field | Meaning |
 |---|---|
@@ -89,3 +89,12 @@ Registers the llama-server endpoint and its models as an OpenAI-compatible provi
 | `apiKey` | Placeholder — llama-server doesn't require auth locally. |
 | `models[].id` | Must match a `[section]` name in `models.ini` so Pi's model picker maps to the right preset. |
 | `models[].contextWindow` | Must match that model's `ctx-size` in `models.ini`, so Pi knows how much context it can use. |
+
+## Linking
+
+The `nixos.llm` feature (`llm.nix`) installs llama.cpp and has Home Manager symlink both files into place with `mkOutOfStoreSymlink`:
+
+- `~/.config/llama.cpp/models.ini` → `models.ini`
+- `~/.pi/agent/models.json` → `pi-models.json`
+
+The links point at the files in this repo (assumed at `~/nixos-config`) rather than at a copy in the Nix store, so edits apply as soon as `llama-serve` is restarted, without a rebuild.

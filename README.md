@@ -103,10 +103,9 @@ The config follows the [dendritic pattern](https://github.com/mightyiam/dendriti
 - `modules/core/` is `nixos.core`, the base every host gets: Nix settings, boot, networking, packages, services, graphics, greetd, the `monitors` option and the Home Manager setup.
 - `modules/home/` is `homeManager.base`, the user-level config every account gets (e.g. Git tooling in `git.nix`, Fish aliases in `shell.nix`).
 - `modules/users/` contains each account's NixOS settings and Git identity.
-- `modules/features/` contains opt-in features, one concern per file. Features with user-level config keep both halves in one file.
+- `modules/features/` contains opt-in features, one concern per file. Features with user-level config keep both halves in one file. A feature that ships its own config files gets a folder for them (e.g. `llm/`).
 - `modules/profiles/` contains bundles that compose modules across areas, like `nixos.pc`.
 - `modules/hosts/` contains per-machine configuration, including generated hardware files. Mine are `workstation` (`mother`, desktop with AMD GPU) and `zenbook` (`apollo`, ASUS Zenbook laptop).
-- `utils/` contains personal scripts and reference configs for things not covered by the declarative system configuration (e.g. llama.cpp model presets).
 
 Host files should stay small: a list of features plus machine-specific settings. Shared behavior belongs in `modules/core/`, `modules/home/`, or a feature under `modules/features/`.
 
@@ -125,4 +124,4 @@ A host gets a feature by listing it; there are no `enable` options. Desktop envi
 
 Each desktop's system and Home Manager config live together in `modules/features/desktop/<name>.nix`. With several listed, pick one per session from the greetd login screen.
 
-Other features (`nixos.ai`, `nixos.dotnet`, `nixos.gaming`, `nixos.docker`, `nixos.podman`, `nixos.k3s`, `nixos.virtualisation`) work the same way. See `modules/features/` for what each one installs.
+Other features (`nixos.llm`, `nixos.dotnet`, `nixos.gaming`, `nixos.docker`, `nixos.podman`, `nixos.k3s`, `nixos.virtualisation`) work the same way. See `modules/features/` for what each one installs.

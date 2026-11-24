@@ -10,7 +10,7 @@ in
       nixos.pc
       nixos.desktop-all
 
-      nixos.ai
+      nixos.llm
       nixos.gaming
       nixos.podman
 
